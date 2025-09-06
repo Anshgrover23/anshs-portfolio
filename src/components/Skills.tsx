@@ -5,9 +5,9 @@ export const Skills = () => {
     {
       title: '🛠️ Frontend Development',
       skills: [
-        { name: 'React.js', icon: '⚛️' },
-        { name: 'Next.js', icon: '⚛' },
-        { name: 'TypeScript', icon: '📘' },
+        { name: 'React.js', icon: '/svg-icons/reactjs.svg' },
+        { name: 'Next.js', icon: '/svg-icons/nextjs.svg' },
+        { name: 'TypeScript', icon: '/svg-icons/typescript.svg' },
         { name: 'TailwindCSS', icon: '🎨' },
         { name: 'Vite', icon: '⚡' },
         { name: 'JavaScript', icon: '💻' },
@@ -18,8 +18,8 @@ export const Skills = () => {
       skills: [
         { name: 'Node.js', icon: '📦' },
         { name: 'Express.js', icon: '🚂' },
-        { name: 'Rust', icon: '🦀' },
-        { name: 'Ruby', icon: '♦️' },
+        { name: 'Rust', icon: '/svg-icons/rust.svg' },
+        { name: 'Ruby', icon: '/svg-icons/ruby.svg' },
         { name: 'PostgreSQL', icon: '🐘' },
         { name: 'REST APIs', icon: '🔄' },
         { name: 'JWT Auth', icon: '🔐' },
@@ -53,7 +53,13 @@ export const Skills = () => {
                   variant="secondary"
                   className="bg-gray-800 text-gray-200 hover:bg-gray-700 transition-colors flex items-center gap-2"
                 >
-                  <span>{skill.icon}</span>
+                  {/* conditionally showing icon and emoji */}
+                  {skill.icon.endsWith('.svg') ? (
+                    <img src={skill.icon} alt={`${skill.name}-svg`} width="15" className={`${skill.name === 'Next.js' && 'invert'} ${skill.name === 'Rust' && 'w-4'}`}/>
+                  ) : (
+                    <span>{skill.icon}</span>
+                  )}
+
                   {skill.name}
                 </Badge>
               ))}

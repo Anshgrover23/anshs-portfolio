@@ -259,55 +259,15 @@ export const Experience = () => {
               {exp.company === 'antiwork' && (
                 <div className="flex gap-2 mt-4 md:mt-0 md:absolute md:right-6 md:bottom-4 md:flex-row flex-col items-center md:items-end justify-center">
                   <span className="flex items-center gap-1 px-3 py-1 rounded-full backdrop-blur-md bg-white/10 border border-blue-400/30 shadow-lg text-blue-200 text-xs font-semibold transition-transform transform hover:scale-105 hover:bg-blue-700/30">
-                    <svg
-                      width="16"
-                      height="16"
-                      fill="currentColor"
-                      className="text-blue-400"
-                    >
-                      <path d="M2 2h12v12H2z" fill="none" />
-                      <path
-                        d="M4 8l2 2 4-4"
-                        stroke="currentColor"
-                        strokeWidth="2"
-                        fill="none"
-                      />
-                    </svg>
+                    <img src="/svg-icons/typescript.svg" alt="typescript-svg" width="15" />
                     TypeScript
                   </span>
                   <span className="flex items-center gap-1 px-3 py-1 rounded-full backdrop-blur-md bg-white/10 border border-zinc-400/30 shadow-lg text-zinc-200 text-xs font-semibold transition-transform transform hover:scale-105 hover:bg-zinc-700/30">
-                    <svg
-                      width="16"
-                      height="16"
-                      fill="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <circle
-                        cx="12"
-                        cy="12"
-                        r="12"
-                        fill="none"
-                        stroke="currentColor"
-                        strokeWidth="2"
-                      />
-                      <path
-                        d="M7 17 L12 7 L17 17 M17 7 V17"
-                        stroke="currentColor"
-                        strokeWidth="2"
-                        fill="none"
-                      />
-                    </svg>
+                    <img src="/svg-icons/nextjs.svg" alt="nextjs-svg" width="15" className='invert' />
                     Next.js
                   </span>
                   <span className="flex items-center gap-1 px-3 py-1 rounded-full backdrop-blur-md bg-white/10 border border-rose-400/30 shadow-lg text-rose-200 text-xs font-semibold transition-transform transform hover:scale-105 hover:bg-rose-700/30">
-                    <svg
-                      width="16"
-                      height="16"
-                      fill="currentColor"
-                      viewBox="0 0 198 198"
-                    >
-                      <path d="M99 0 L18 59 L99 198 L180 59 Z M99 20 L170 58 L99 178 L28 58 Z" />
-                    </svg>
+                    <img src="/svg-icons/ruby.svg" alt="ruby-svg" width="15" />
                     Ruby
                   </span>
                 </div>
@@ -315,39 +275,11 @@ export const Experience = () => {
               {exp.company === 'TSCircuit' && (
                 <div className="flex gap-2 mt-4 md:mt-0 md:absolute md:right-6 md:bottom-4 md:flex-row flex-col items-center md:items-end justify-center">
                   <span className="flex items-center gap-1 px-3 py-1 rounded-full backdrop-blur-md bg-white/10 border border-blue-400/30 shadow-lg text-blue-200 text-xs font-semibold transition-transform transform hover:scale-105 hover:bg-blue-700/30">
-                    <svg
-                      width="16"
-                      height="16"
-                      fill="currentColor"
-                      className="text-blue-400"
-                    >
-                      <path d="M2 2h12v12H2z" fill="none" />
-                      <path
-                        d="M4 8l2 2 4-4"
-                        stroke="currentColor"
-                        strokeWidth="2"
-                        fill="none"
-                      />
-                    </svg>
+                    <img src="/svg-icons/typescript.svg" alt="typescript-svg" width="15" />
                     TypeScript
                   </span>
                   <span className="flex items-center gap-1 px-3 py-1 rounded-full backdrop-blur-md bg-white/10 border border-cyan-400/30 shadow-lg text-cyan-200 text-xs font-semibold transition-transform transform hover:scale-105 hover:bg-cyan-700/30">
-                    <svg
-                      width="16"
-                      height="16"
-                      fill="currentColor"
-                      className="text-cyan-400"
-                    >
-                      <circle
-                        cx="8"
-                        cy="8"
-                        r="7"
-                        stroke="currentColor"
-                        strokeWidth="2"
-                        fill="none"
-                      />
-                      <circle cx="8" cy="8" r="3" fill="currentColor" />
-                    </svg>
+                    <img src="/svg-icons/reactjs.svg" alt="reactjs-svg" width="15" />
                     React.js
                   </span>
                 </div>
@@ -355,30 +287,7 @@ export const Experience = () => {
               {exp.company === 'Mediar-AI' && (
                 <div className="flex gap-2 mt-4 md:mt-0 md:absolute md:right-6 md:bottom-4 md:flex-row flex-col items-center md:items-end justify-center">
                   <span className="flex items-center gap-1 px-3 py-1 rounded-full backdrop-blur-md bg-white/10 border border-orange-400/30 shadow-lg text-orange-200 text-xs font-semibold transition-transform transform hover:scale-105 hover:bg-orange-700/30">
-                    <svg
-                      width="16"
-                      height="16"
-                      fill="currentColor"
-                      className="text-orange-400"
-                    >
-                      <circle
-                        cx="8"
-                        cy="8"
-                        r="7"
-                        stroke="currentColor"
-                        strokeWidth="2"
-                        fill="none"
-                      />
-                      <text
-                        x="8"
-                        y="12"
-                        textAnchor="middle"
-                        fontSize="10"
-                        fill="currentColor"
-                      >
-                        🦀
-                      </text>
-                    </svg>
+                    <img src="/svg-icons/rust.svg" alt="rust-svg" width="15" className='w-5' />
                     Rust
                   </span>
                 </div>
