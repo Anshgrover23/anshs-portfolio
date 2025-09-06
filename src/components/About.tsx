@@ -63,7 +63,7 @@ export const About = () => {
             </li>
           </ul>
           <div className="mt-4">
-            <Button  className='bg-white font-semibold text-black hover:bg-gray-200'>
+            <Button  className='bg-white font-semibold text-black hover:bg-gray-300'>
               <a
                 href="https://github.com/sponsors/Anshgrover23"
                 target="_blank"

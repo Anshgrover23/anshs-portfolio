@@ -282,10 +282,7 @@ export const Experience = () => {
                     <img src="/svg-icons/reactjs.svg" alt="reactjs-svg" width="15" />
                     React.js
                   </span>
-                     <span className="flex justify-center items-center gap-1 px-3 py-1 rounded-full backdrop-blur-md bg-white/10 border border-rose-400/30 shadow-lg text-rose-200 text-xs font-semibold transition-transform transform hover:scale-105 hover:bg-rose-700/30">
-                    <img src="/svg-icons/ruby.svg" alt="ruby-svg" width="15" />
-                    Ruby
-                  </span>
+                    
                 </div>
               )}
               {exp.company === 'Mediar-AI' && (
