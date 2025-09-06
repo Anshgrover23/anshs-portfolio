@@ -15,7 +15,7 @@ interface CompanyModalProps {
   onClose: () => void;
   company: {
     name: string;
-    logo: string;
+    logo: React.ReactNode;
     contributions: Contribution[];
   };
 }

@@ -1,5 +1,6 @@
 
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Avatar, AvatarFallback } from "@/components/ui/avatar";
+import { User } from "lucide-react";
 
 export const Hero = () => {
   return (
@@ -14,7 +15,9 @@ export const Hero = () => {
           </p>
         </div>
         <Avatar className="w-24 h-24">
-          <AvatarImage src="/avatar.jpeg" alt="Ansh Grover" />
+          <div className="flex items-center justify-center w-full h-full rounded-full bg-gray-800">
+            <User className="w-12 h-12 text-gray-300" aria-hidden />
+          </div>
           <AvatarFallback className="text-2xl font-bold bg-gradient-to-br from-purple-500 to-blue-600 text-white">
             AG
           </AvatarFallback>

@@ -1,5 +1,9 @@
 import { useState } from "react";
 import { CompanyModal } from "./CompanyModal";
+import { AntiworkLogo } from "./icons/AntiworkLogo";
+import { TscircuitLogo } from "./icons/TscircuitLogo";
+import { MediarLogo } from "./icons/MediarLogo";
+import { AlgoraLogo } from "./icons/AlgoraLogo";
 
 export const Experience = () => {
   const [selectedCompany, setSelectedCompany] = useState<string | null>(null);
@@ -10,7 +14,7 @@ export const Experience = () => {
       role: "Open Source Contributor",
       period: "2025 - Present",
       description: "Refactored mailbox logic, improved UI/UX, added equity management.",
-      logo: "antiwork.png",
+      logo: <AntiworkLogo className="w-8 h-8 text-purple-400" />,
       link: "https://github.com/antiwork/helper",
       totalPRs: "9+",
       totalBounties: "$6000 (Flexile)",
@@ -68,7 +72,7 @@ export const Experience = () => {
       role: "Open Source Contributor",
       period: "2024 - Present",
       description: "Contributing to circuit design tools and testing infrastructure",
-      logo: "tscircuit.png",
+      logo: <TscircuitLogo className="w-8 h-8 text-cyan-400" />,
       link: "https://tscircuit.com/",
       totalPRs: "100+",
       totalBounties: "$809+",
@@ -103,7 +107,7 @@ export const Experience = () => {
       role: "Open Source Contributor",
       period: "2024 - Present",
       description: "Built dev tools, automation scripts, and published Screenpipe to Homebrew.",
-      logo: "mediar-ai.png",
+      logo: <MediarLogo className="w-8 h-8 text-orange-400" />,
       link: "https://www.mediar.ai/",
       totalPRs: "20+",
       totalBounties: "$250+",
@@ -138,7 +142,7 @@ export const Experience = () => {
       role: "Bounty Hunter",
       period: "2024 - Present",
       description: "Earned $1099+ in bounties by solving github issues.",
-      logo: "algora.png",
+      logo: <AlgoraLogo className="w-8 h-8 text-emerald-400" />,
       link: "https://algora.io/Anshgrover23",
       totalPRs: "33+",
       totalBounties: "$1099+",
@@ -186,13 +190,7 @@ export const Experience = () => {
             className={`flex items-start gap-4 p-6 rounded-lg bg-gray-900/50 hover:bg-gray-900/70 transition-all duration-300 cursor-pointer relative ${exp.company === 'antiwork' ? 'border-2 border-purple-500 shadow-[0_0_16px_4px_rgba(168,85,247,0.5)]' : ''}`}
             onClick={() => setSelectedCompany(exp.company)}
           >
-            <div className="text-3xl">
-              {typeof exp.logo === 'string' && exp.logo.endsWith('.png') ? (
-                <img src={`/${exp.logo}`} alt={`${exp.company} logo`} className="w-8 h-8 rounded-full object-contain inline-block align-middle" />
-              ) : (
-                exp.logo
-              )}
-            </div>
+            <div className="text-3xl">{exp.logo}</div>
             <div className="flex-1">
               <div className="flex items-center justify-between mb-2">
                 <a
