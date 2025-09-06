@@ -11,7 +11,7 @@ export const Experience = () => {
       period: '2025 - Present',
       description:
         'Refactored mailbox logic, improved UI/UX, added equity management.',
-      logo: 'antiwork.png',
+      logo: 'antiwork.svg',
       link: 'https://github.com/antiwork/helper',
       totalPRs: '9+',
       totalBounties: '$6000 (Flexile)',
@@ -82,7 +82,7 @@ export const Experience = () => {
       period: '2024 - Present',
       description:
         'Contributing to circuit design tools and testing infrastructure',
-      logo: 'tscircuit.png',
+      logo: 'tscircuit.svg',
       link: 'https://tscircuit.com/',
       totalPRs: '100+',
       totalBounties: '$809+',
@@ -122,7 +122,7 @@ export const Experience = () => {
       period: '2024 - Present',
       description:
         'Built dev tools, automation scripts, and published Screenpipe to Homebrew.',
-      logo: 'mediar-ai.png',
+      logo: 'mediar-ai.svg',
       link: 'https://www.mediar.ai/',
       totalPRs: '20+',
       totalBounties: '$250+',
@@ -161,7 +161,7 @@ export const Experience = () => {
       role: 'Bounty Hunter',
       period: '2024 - Present',
       description: 'Earned $1099+ in bounties by solving github issues.',
-      logo: 'algora.png',
+      logo: 'algora.svg',
       link: 'https://algora.io/Anshgrover23',
       totalPRs: '33+',
       totalBounties: '$1099+',
@@ -213,7 +213,7 @@ export const Experience = () => {
             onClick={() => setSelectedCompany(exp.company)}
           >
             <div className="text-3xl">
-              {typeof exp.logo === 'string' && exp.logo.endsWith('.png') ? (
+              {typeof exp.logo === 'string' && exp.logo.endsWith('.svg') ? (
                 <img
                   src={`/${exp.logo}`}
                   alt={`${exp.company} logo`}
