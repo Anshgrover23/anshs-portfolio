@@ -1,19 +1,32 @@
-import { useState, useRef, useLayoutEffect } from "react";
-import { Home, User, Briefcase, GraduationCap, Code, Mail, Menu, X } from "lucide-react";
+import { useState, useRef, useLayoutEffect } from 'react';
+import {
+  Home,
+  User,
+  Briefcase,
+  GraduationCap,
+  Code,
+  Mail,
+  Menu,
+  X,
+} from 'lucide-react';
 
 export const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
-  const [highlightStyle, setHighlightStyle] = useState({ left: 0, width: 0, opacity: 0 });
+  const [highlightStyle, setHighlightStyle] = useState({
+    left: 0,
+    width: 0,
+    opacity: 0,
+  });
   const navRefs = useRef<(HTMLAnchorElement | null)[]>([]);
 
   const navItems = [
-    { icon: Home, label: "Home", href: "#home" },
-    { icon: User, label: "About", href: "#about" },
-    { icon: Briefcase, label: "Experience", href: "#experience" },
-    { icon: GraduationCap, label: "Education", href: "#education" },
-    { icon: Code, label: "Skills", href: "#skills" },
-    { icon: Mail, label: "Contact", href: "#contact" },
+    { icon: Home, label: 'Home', href: '#home' },
+    { icon: User, label: 'About', href: '#about' },
+    { icon: Briefcase, label: 'Experience', href: '#experience' },
+    { icon: GraduationCap, label: 'Education', href: '#education' },
+    { icon: Code, label: 'Skills', href: '#skills' },
+    { icon: Mail, label: 'Contact', href: '#contact' },
   ];
 
   useLayoutEffect(() => {
@@ -70,7 +83,11 @@ export const Navigation = () => {
               onClick={() => setIsOpen(!isOpen)}
               className="text-gray-300 hover:text-white transition-colors"
             >
-              {isOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+              {isOpen ? (
+                <X className="w-5 h-5" />
+              ) : (
+                <Menu className="w-5 h-5" />
+              )}
             </button>
           </div>
         </div>
@@ -99,7 +116,9 @@ export const Navigation = () => {
                         className="flex items-center gap-4 text-gray-300 hover:text-white transition-colors py-3 border-b border-gray-700/50 last:border-b-0"
                       >
                         <Icon className="w-5 h-5" />
-                        <span className="text-lg font-medium">{item.label}</span>
+                        <span className="text-lg font-medium">
+                          {item.label}
+                        </span>
                       </a>
                     );
                   })}

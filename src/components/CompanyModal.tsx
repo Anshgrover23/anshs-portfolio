@@ -1,7 +1,11 @@
-
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
-import { Badge } from "@/components/ui/badge";
-import { ExternalLink } from "lucide-react";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+} from '@/components/ui/dialog';
+import { Badge } from '@/components/ui/badge';
+import { ExternalLink } from 'lucide-react';
 
 interface Contribution {
   title: string;
@@ -20,7 +24,11 @@ interface CompanyModalProps {
   };
 }
 
-export const CompanyModal = ({ isOpen, onClose, company }: CompanyModalProps) => {
+export const CompanyModal = ({
+  isOpen,
+  onClose,
+  company,
+}: CompanyModalProps) => {
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
       <DialogContent className="max-w-2xl bg-gray-900 border-gray-700 text-white">
@@ -30,14 +38,22 @@ export const CompanyModal = ({ isOpen, onClose, company }: CompanyModalProps) =>
             {company.name} - Featured Contributions
           </DialogTitle>
         </DialogHeader>
-        
+
         <div className="space-y-6 max-h-96 overflow-y-auto">
           {company.contributions.map((contribution, index) => (
-            <div key={index} className="p-4 rounded-lg bg-gray-800/50 border border-gray-700">
+            <div
+              key={index}
+              className="p-4 rounded-lg bg-gray-800/50 border border-gray-700"
+            >
               <div className="flex items-start justify-between mb-2">
-                <h4 className="text-lg font-semibold text-purple-400">{contribution.title}</h4>
+                <h4 className="text-lg font-semibold text-purple-400">
+                  {contribution.title}
+                </h4>
                 {contribution.bounty && (
-                  <Badge variant="secondary" className="bg-green-900/50 text-green-300">
+                  <Badge
+                    variant="secondary"
+                    className="bg-green-900/50 text-green-300"
+                  >
                     {contribution.bounty}
                   </Badge>
                 )}

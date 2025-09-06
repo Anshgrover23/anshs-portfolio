@@ -3,6 +3,7 @@
 My very own portfolio website.
 
 ## Features
+
 - ⚡️ Blazing fast with Vite
 - 🎨 Styled with Tailwind CSS
 - 🧩 Modular React components
@@ -26,11 +27,13 @@ My very own portfolio website.
    ```
 
 ## Build for Production
+
 ```sh
 npm run build
 ```
 
 ## Tech Stack
+
 - React
 - TypeScript
 - Vite

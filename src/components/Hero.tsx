@@ -1,14 +1,11 @@
-
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 
 export const Hero = () => {
   return (
     <section className="mb-16">
       <div className="flex items-center gap-8 mb-8">
         <div className="flex-1">
-          <h1 className="text-5xl font-bold mb-4 text-white">
-            Hi, Ansh here
-          </h1>
+          <h1 className="text-5xl font-bold mb-4 text-white">Hi, Ansh here</h1>
           <p className="text-xl text-gray-400">
             Building open-source dev tools & automations 📍Rajasthan, India
           </p>

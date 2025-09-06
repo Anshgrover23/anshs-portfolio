@@ -1,46 +1,49 @@
-import { Github, Mail, ExternalLink } from "lucide-react";
-import { FaXTwitter } from "react-icons/fa6";
-import { useState } from "react";
+import { Github, Mail, ExternalLink } from 'lucide-react';
+import { FaXTwitter } from 'react-icons/fa6';
+import { useState } from 'react';
 
 export const AnimatedSocialLinks = () => {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
-  
+
   const links = [
-    { 
-      icon: Github, 
-      href: "https://github.com/Anshgrover23", 
-      label: "GitHub",
-      color: "hover:bg-gray-700"
+    {
+      icon: Github,
+      href: 'https://github.com/Anshgrover23',
+      label: 'GitHub',
+      color: 'hover:bg-gray-700',
     },
-    { 
-      icon: FaXTwitter, 
-      href: "https://twitter.com/Anshgrover23", 
-      label: "Twitter",
-      color: "hover:bg-blue-900"
+    {
+      icon: FaXTwitter,
+      href: 'https://twitter.com/Anshgrover23',
+      label: 'Twitter',
+      color: 'hover:bg-blue-900',
     },
-    { 
-      icon: Mail, 
-      href: "mailto:ag5989670@gmail.com", 
-      label: "Email",
-      color: "hover:bg-green-600"
+    {
+      icon: Mail,
+      href: 'mailto:ag5989670@gmail.com',
+      label: 'Email',
+      color: 'hover:bg-green-600',
     },
-    { 
-      icon: ExternalLink, 
-      href: "https://algora.io/Anshgrover23", 
-      label: "Algora Profile",
-      color: "hover:bg-purple-600"
-    }
+    {
+      icon: ExternalLink,
+      href: 'https://algora.io/Anshgrover23',
+      label: 'Algora Profile',
+      color: 'hover:bg-purple-600',
+    },
   ];
 
   return (
     <div className="fixed bottom-6 left-1/2 transform -translate-x-1/2 z-50">
       <div className="bg-gray-900/80 backdrop-blur-md rounded-full px-6 py-3 border border-gray-700 animate-slide-in relative">
-        <div 
+        <div
           className="absolute top-0 left-0 h-full bg-white/10 rounded-full transition-all duration-500 ease-out"
           style={{
             width: hoveredIndex !== null ? '44px' : '0px',
-            transform: hoveredIndex !== null ? `translateX(${16 + hoveredIndex * 56}px)` : 'translateX(0px)',
-            opacity: hoveredIndex !== null ? 1 : 0
+            transform:
+              hoveredIndex !== null
+                ? `translateX(${16 + hoveredIndex * 56}px)`
+                : 'translateX(0px)',
+            opacity: hoveredIndex !== null ? 1 : 0,
           }}
         />
         <div className="flex items-center gap-4 relative z-10">
