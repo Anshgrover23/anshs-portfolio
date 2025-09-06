@@ -1,6 +1,6 @@
 export const Education = () => {
   return (
-    <section className="mb-16">
+    <section id="education" className="mb-24 font-['Bricolage_Grotesque']">
       <h2 className="text-3xl font-bold mb-8 text-white">Education</h2>
       <div className="p-6 rounded-lg bg-gray-900/50">
         <div className="flex items-start gap-4">

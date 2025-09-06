@@ -49,14 +49,14 @@ export const Navigation = () => {
 
   return (
     <>
-      <nav className="fixed top-6 left-1/2 transform -translate-x-1/2 z-50">
+      <nav className="fixed top-6 left-1/2 transform -translate-x-1/2 z-50 font-['Bricolage_Grotesque']">
         <div className="bg-gray-900/80 backdrop-blur-md rounded-full px-3 py-1.5 border border-gray-700 relative">
           <div className="hidden md:flex items-center gap-4 relative">
             <div
               className="absolute top-0 h-full bg-white/10 rounded-full transition-all duration-300 ease-out"
               style={{
-                left: highlightStyle.left,
-                width: highlightStyle.width,
+                left: highlightStyle.left -6,
+                width: highlightStyle.width + 12,
                 opacity: highlightStyle.opacity,
                 pointerEvents: 'none',
               }}

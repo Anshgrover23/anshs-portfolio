@@ -38,7 +38,7 @@ export const Skills = () => {
   ];
 
   return (
-    <section className="mb-16">
+    <section id="skills" className="mb-24 font-['Bricolage_Grotesque']">
       <h2 className="text-3xl font-bold mb-8 text-white">📊 My Stack</h2>
       <div className="space-y-8">
         {skillCategories.map((category, index) => (

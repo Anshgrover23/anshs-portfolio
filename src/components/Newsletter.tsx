@@ -15,7 +15,7 @@ export const Newsletter = () => {
   };
 
   return (
-    <section className="mb-16 flex flex-col items-center text-center">
+    <section className="mb-16 flex flex-col items-center text-center font-['Bricolage_Grotesque']">
       <h2 className="text-3xl font-bold mb-4 text-white">Stay Updated</h2>
       <p className="text-gray-400 mb-6">
         Subscribe to my email list. I do not spam, ever.

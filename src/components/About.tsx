@@ -1,6 +1,8 @@
+import { Button } from './ui/button';
+
 export const About = () => {
   return (
-    <section id="about" className="mb-16">
+    <section id="about" className="mb-24 font-['Bricolage_Grotesque']">
       <h2 className="text-3xl font-bold mb-8 text-white">🧐 About Me</h2>
       <div className="space-y-6">
         <div className="text-gray-300 leading-relaxed">
@@ -18,7 +20,7 @@ export const About = () => {
           <h4 className="text-lg font-semibold text-white mb-3">
             🏆 Key Achievements
           </h4>
-          <ul className="text-gray-300 space-y-2">
+          <ul className="text-gray-300 space-y-2 mb-6">
             <li>
               • <strong className="text-white">215+ PRs</strong> merged across
               open-source projects{' '}
@@ -61,14 +63,16 @@ export const About = () => {
             </li>
           </ul>
           <div className="mt-4">
-            <a
-              href="https://github.com/sponsors/Anshgrover23"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-block bg-accent text-accent-foreground hover:bg-primary hover:text-primary-foreground font-semibold px-4 py-2 rounded transition-colors shadow-lg"
-            >
-              Sponsor me on GitHub
-            </a>
+            <Button  className='bg-white font-semibold text-black hover:bg-gray-200'>
+              <a
+                href="https://github.com/sponsors/Anshgrover23"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-block"
+              >
+                Sponsor me on GitHub
+              </a>
+            </Button>
           </div>
         </div>
       </div>

@@ -31,7 +31,7 @@ export const CompanyModal = ({
 }: CompanyModalProps) => {
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="max-w-2xl bg-gray-900 border-gray-700 text-white">
+      <DialogContent className="max-w-2xl bg-gray-900 border-gray-700 text-white font-['Bricolage_Grotesque']">
         <DialogHeader>
           <DialogTitle className="flex items-center gap-3 text-2xl">
             <span className="text-3xl">{company.logo}</span>

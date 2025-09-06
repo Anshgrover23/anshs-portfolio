@@ -10,7 +10,7 @@ export const SocialLinks = () => {
 
   return (
     <section>
-      <div className="flex justify-center gap-6 py-8">
+      <div className="flex justify-center gap-6 py-8 font-['Bricolage_Grotesque']">
         {links.map((link, index) => {
           const Icon = link.icon;
           return (

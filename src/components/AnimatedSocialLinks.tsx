@@ -33,7 +33,7 @@ export const AnimatedSocialLinks = () => {
   ];
 
   return (
-    <div className="fixed bottom-6 left-1/2 transform -translate-x-1/2 z-50">
+    <div className="fixed bottom-6 left-1/2 transform -translate-x-1/2 z-50 font-['Bricolage_Grotesque']">
       <div className="bg-gray-900/80 backdrop-blur-md rounded-full px-6 py-3 border border-gray-700 animate-slide-in relative">
         <div
           className="absolute top-1/2 h-14 w-14 bg-white/10 rounded-full transition-all duration-500 ease-out"

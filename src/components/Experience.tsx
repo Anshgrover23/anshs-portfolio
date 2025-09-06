@@ -201,7 +201,7 @@ export const Experience = () => {
   };
 
   return (
-    <section className="mb-16">
+    <section id="experience" className="mb-24 font-['Bricolage_Grotesque']">
       <h2 className="text-3xl font-bold mb-8 text-white">
         Cool places I’ve contributed to
       </h2>
@@ -257,7 +257,7 @@ export const Experience = () => {
               </p>
               {/* Language badges bottom right (responsive) */}
               {exp.company === 'antiwork' && (
-                <div className="flex gap-2 mt-4 md:mt-0 md:absolute md:right-6 md:bottom-4 md:flex-row flex-col items-center md:items-end justify-center">
+                <div className="flex flex-row gap-2 mt-4 md:mt-0 md:absolute md:right-6 md:bottom-4 md:flex-row items-center md:items-end justify-center">
                   <span className="flex items-center gap-1 px-3 py-1 rounded-full backdrop-blur-md bg-white/10 border border-blue-400/30 shadow-lg text-blue-200 text-xs font-semibold transition-transform transform hover:scale-105 hover:bg-blue-700/30">
                     <img src="/svg-icons/typescript.svg" alt="typescript-svg" width="15" />
                     TypeScript
@@ -273,7 +273,7 @@ export const Experience = () => {
                 </div>
               )}
               {exp.company === 'TSCircuit' && (
-                <div className="flex gap-2 mt-4 md:mt-0 md:absolute md:right-6 md:bottom-4 md:flex-row flex-col items-center md:items-end justify-center">
+                <div className="flex gap-2 mt-4 md:mt-0 md:absolute md:right-6 md:bottom-4 md:flex-row flex-row items-center md:items-end justify-center">
                   <span className="flex items-center gap-1 px-3 py-1 rounded-full backdrop-blur-md bg-white/10 border border-blue-400/30 shadow-lg text-blue-200 text-xs font-semibold transition-transform transform hover:scale-105 hover:bg-blue-700/30">
                     <img src="/svg-icons/typescript.svg" alt="typescript-svg" width="15" />
                     TypeScript
@@ -285,7 +285,7 @@ export const Experience = () => {
                 </div>
               )}
               {exp.company === 'Mediar-AI' && (
-                <div className="flex gap-2 mt-4 md:mt-0 md:absolute md:right-6 md:bottom-4 md:flex-row flex-col items-center md:items-end justify-center">
+                <div className="flex gap-2 mt-4 md:mt-0 md:absolute md:right-6 md:bottom-4 md:flex-row flex-row items-center md:items-end justify-center">
                   <span className="flex items-center gap-1 px-3 py-1 rounded-full backdrop-blur-md bg-white/10 border border-orange-400/30 shadow-lg text-orange-200 text-xs font-semibold transition-transform transform hover:scale-105 hover:bg-orange-700/30">
                     <img src="/svg-icons/rust.svg" alt="rust-svg" width="15" className='w-5' />
                     Rust
