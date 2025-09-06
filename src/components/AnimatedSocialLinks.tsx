@@ -36,13 +36,10 @@ export const AnimatedSocialLinks = () => {
     <div className="fixed bottom-6 left-1/2 transform -translate-x-1/2 z-50">
       <div className="bg-gray-900/80 backdrop-blur-md rounded-full px-6 py-3 border border-gray-700 animate-slide-in relative">
         <div
-          className="absolute top-0 left-0 h-full bg-white/10 rounded-full transition-all duration-500 ease-out"
+          className="absolute top-1/2 h-14 w-14 bg-white/10 rounded-full transition-all duration-500 ease-out"
           style={{
-            width: hoveredIndex !== null ? '44px' : '0px',
-            transform:
-              hoveredIndex !== null
-                ? `translateX(${16 + hoveredIndex * 56}px)`
-                : 'translateX(0px)',
+            left: hoveredIndex !== null ? `${hoveredIndex * 52 + 14}px` : '0px',
+            transform: 'translateY(-50%)',
             opacity: hoveredIndex !== null ? 1 : 0,
           }}
         />
