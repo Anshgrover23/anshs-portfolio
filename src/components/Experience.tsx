@@ -238,18 +238,22 @@ export const Experience = () => {
               </div>
               <p className="text-purple-400 mb-2">{exp.role}</p>
               <p className="text-gray-300 text-sm mb-3">{exp.description}</p>
-              <div className="flex items-center gap-4 mb-2">
+              <div className="flex flex-col items-start gap-4 mb-2">
                 <div className="flex items-center gap-2">
-                  <span className="text-green-400 font-semibold">
+                  <span className="text-green-400 font-semibold text-sm sm:text-sm">
                     PRs Merged:
                   </span>
-                  <span className="text-white">{exp.totalPRs}</span>
+                  <span className="text-white text-sm sm:text-sm font-medium">
+                    {exp.totalPRs}
+                  </span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <span className="text-yellow-400 font-semibold">
+                  <span className="text-yellow-400 font-semibold text-sm sm:text-sm">
                     Bounties Earned:
                   </span>
-                  <span className="text-white">{exp.totalBounties}</span>
+                  <span className="text-white text-sm sm:text-sm font-medium">
+                    {exp.totalBounties}
+                  </span>
                 </div>
               </div>
               <p className="text-blue-400 text-sm mt-2">
@@ -257,13 +261,22 @@ export const Experience = () => {
               </p>
               {/* Language badges bottom right (responsive) */}
               {exp.company === 'antiwork' && (
-                <div className="flex gap-2 mt-4 md:mt-0 md:absolute md:right-6 md:bottom-4 md:flex-row flex-col items-center md:items-end justify-center">
+                <div className="flex flex-wrap gap-2 mt-4 md:mt-0 md:absolute md:right-6 md:bottom-4 md:flex-row items-center md:items-end justify-start">
                   <span className="flex items-center gap-1 px-3 py-1 rounded-full backdrop-blur-md bg-white/10 border border-blue-400/30 shadow-lg text-blue-200 text-xs font-semibold transition-transform transform hover:scale-105 hover:bg-blue-700/30">
-                    <img src="/svg-icons/typescript.svg" alt="typescript-svg" width="15" />
+                    <img
+                      src="/svg-icons/typescript.svg"
+                      alt="typescript-svg"
+                      width="15"
+                    />
                     TypeScript
                   </span>
                   <span className="flex items-center gap-1 px-3 py-1 rounded-full backdrop-blur-md bg-white/10 border border-zinc-400/30 shadow-lg text-zinc-200 text-xs font-semibold transition-transform transform hover:scale-105 hover:bg-zinc-700/30">
-                    <img src="/svg-icons/nextjs.svg" alt="nextjs-svg" width="15" className='invert' />
+                    <img
+                      src="/svg-icons/nextjs.svg"
+                      alt="nextjs-svg"
+                      width="15"
+                      className="invert"
+                    />
                     Next.js
                   </span>
                   <span className="flex items-center gap-1 px-3 py-1 rounded-full backdrop-blur-md bg-white/10 border border-rose-400/30 shadow-lg text-rose-200 text-xs font-semibold transition-transform transform hover:scale-105 hover:bg-rose-700/30">
@@ -273,21 +286,34 @@ export const Experience = () => {
                 </div>
               )}
               {exp.company === 'TSCircuit' && (
-                <div className="flex gap-2 mt-4 md:mt-0 md:absolute md:right-6 md:bottom-4 md:flex-row flex-col items-center md:items-end justify-center">
+                <div className="flex flex-wrap gap-2 mt-4 md:mt-0 md:absolute md:right-6 md:bottom-4 md:flex-row items-center md:items-end justify-start">
                   <span className="flex items-center gap-1 px-3 py-1 rounded-full backdrop-blur-md bg-white/10 border border-blue-400/30 shadow-lg text-blue-200 text-xs font-semibold transition-transform transform hover:scale-105 hover:bg-blue-700/30">
-                    <img src="/svg-icons/typescript.svg" alt="typescript-svg" width="15" />
+                    <img
+                      src="/svg-icons/typescript.svg"
+                      alt="typescript-svg"
+                      width="15"
+                    />
                     TypeScript
                   </span>
                   <span className="flex items-center gap-1 px-3 py-1 rounded-full backdrop-blur-md bg-white/10 border border-cyan-400/30 shadow-lg text-cyan-200 text-xs font-semibold transition-transform transform hover:scale-105 hover:bg-cyan-700/30">
-                    <img src="/svg-icons/reactjs.svg" alt="reactjs-svg" width="15" />
+                    <img
+                      src="/svg-icons/reactjs.svg"
+                      alt="reactjs-svg"
+                      width="15"
+                    />
                     React.js
                   </span>
                 </div>
               )}
               {exp.company === 'Mediar-AI' && (
-                <div className="flex gap-2 mt-4 md:mt-0 md:absolute md:right-6 md:bottom-4 md:flex-row flex-col items-center md:items-end justify-center">
+                <div className="flex flex-wrap gap-2 mt-4 md:mt-0 md:absolute md:right-6 md:bottom-4 md:flex-row items-center md:items-end justify-start">
                   <span className="flex items-center gap-1 px-3 py-1 rounded-full backdrop-blur-md bg-white/10 border border-orange-400/30 shadow-lg text-orange-200 text-xs font-semibold transition-transform transform hover:scale-105 hover:bg-orange-700/30">
-                    <img src="/svg-icons/rust.svg" alt="rust-svg" width="15" className='w-5' />
+                    <img
+                      src="/svg-icons/rust.svg"
+                      alt="rust-svg"
+                      width="15"
+                      className="w-5"
+                    />
                     Rust
                   </span>
                 </div>
