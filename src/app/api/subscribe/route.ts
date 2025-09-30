@@ -16,12 +16,15 @@ interface RateLimitEntry {
 }
 
 // Simple in-memory rate limiter using built-in Map
+// NOTE: This is a basic implementation suitable for development and light production use.
+// In serverless environments (like Vercel), each function instance has its own memory,
+// so rate limits are per-instance, not globally shared. For enterprise-grade rate limiting,
+// consider using Redis, Vercel KV, or Upstash.
 const rateLimitMap = new Map<string, RateLimitEntry>();
-const RATE_LIMIT = 5; // 5 requests per hour
-const WINDOW_MS = 60 * 60 * 1000; // 1 hour in milliseconds
-const MAX_ENTRIES = 10000; // Maximum entries to prevent memory leaks
+const RATE_LIMIT = 5; 
+const WINDOW_MS = 60 * 60 * 1000; 
+const MAX_ENTRIES = 10000; 
 
-// Cleanup old entries every 10 minutes
 setInterval(() => {
   const now = Date.now();
   for (const [key, entry] of rateLimitMap.entries()) {
@@ -29,7 +32,6 @@ setInterval(() => {
       rateLimitMap.delete(key);
     }
   }
-  // If still too many entries, remove oldest ones
   if (rateLimitMap.size > MAX_ENTRIES) {
     const entries = Array.from(rateLimitMap.entries())
       .sort((a, b) => a[1].resetTime - b[1].resetTime);
@@ -43,7 +45,6 @@ function checkRateLimit(ip: string): boolean {
   const entry = rateLimitMap.get(ip);
   
   if (!entry || entry.resetTime < now) {
-    // No entry or expired, create new one
     rateLimitMap.set(ip, {
       count: 1,
       resetTime: now + WINDOW_MS
@@ -52,10 +53,9 @@ function checkRateLimit(ip: string): boolean {
   }
   
   if (entry.count >= RATE_LIMIT) {
-    return false; // Rate limit exceeded
+    return false; 
   }
   
-  // Increment count
   entry.count++;
   return true;
 }
@@ -64,10 +64,9 @@ const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 export async function POST(request: Request) {
   try {
-    // Improved IP detection with better handling for unknown IPs
     const forwarded = request.headers.get('x-forwarded-for');
     const realIp = request.headers.get('x-real-ip');
-    const cfConnectingIp = request.headers.get('cf-connecting-ip'); // Cloudflare
+    const cfConnectingIp = request.headers.get('cf-connecting-ip'); 
     
     let ip: string;
     if (forwarded) {
@@ -77,9 +76,13 @@ export async function POST(request: Request) {
     } else if (cfConnectingIp) {
       ip = cfConnectingIp.trim();
     } else {
-      // Generate a unique identifier for unknown IPs using timestamp and random value
-      ip = `unknown-${Date.now()}-${Math.random().toString(36).substring(7)}`;
-      console.warn('Unable to determine client IP - using unique identifier for rate limiting');
+      // Use a shared identifier for all unknown IPs to prevent bypass
+      ip = 'unknown-shared';
+      console.warn('Unable to determine client IP - using shared rate limit', {
+        userAgent: request.headers.get('user-agent'),
+        origin: request.headers.get('origin'),
+        referer: request.headers.get('referer')
+      });
     }
     
     const isAllowed = checkRateLimit(ip);
@@ -124,7 +127,6 @@ export async function POST(request: Request) {
     
     const createContact = new brevo.CreateContact();
     createContact.email = email;
-    // Validate BREVO_LIST_ID before parsing to prevent NaN
     if (process.env.BREVO_LIST_ID) {
       const listId = parseInt(process.env.BREVO_LIST_ID, 10);
       if (!isNaN(listId)) {
