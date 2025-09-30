@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import * as brevo from '@getbrevo/brevo';
+import { EMAIL_REGEX } from '@/Constants';
 
 interface BrevoApiError {
   response?: {
@@ -10,90 +11,8 @@ interface BrevoApiError {
   };
 }
 
-interface RateLimitEntry {
-  count: number;
-  resetTime: number;
-}
-
-// Simple in-memory rate limiter using built-in Map
-// NOTE: This is a basic implementation suitable for development and light production use.
-// In serverless environments (like Vercel), each function instance has its own memory,
-// so rate limits are per-instance, not globally shared. For enterprise-grade rate limiting,
-// consider using Redis, Vercel KV, or Upstash.
-const rateLimitMap = new Map<string, RateLimitEntry>();
-const RATE_LIMIT = 5; 
-const WINDOW_MS = 60 * 60 * 1000; 
-const MAX_ENTRIES = 10000; 
-
-setInterval(() => {
-  const now = Date.now();
-  for (const [key, entry] of rateLimitMap.entries()) {
-    if (entry.resetTime < now) {
-      rateLimitMap.delete(key);
-    }
-  }
-  if (rateLimitMap.size > MAX_ENTRIES) {
-    const entries = Array.from(rateLimitMap.entries())
-      .sort((a, b) => a[1].resetTime - b[1].resetTime);
-    const toRemove = entries.slice(0, entries.length - MAX_ENTRIES);
-    toRemove.forEach(([key]) => rateLimitMap.delete(key));
-  }
-}, 10 * 60 * 1000);
-
-function checkRateLimit(ip: string): boolean {
-  const now = Date.now();
-  const entry = rateLimitMap.get(ip);
-  
-  if (!entry || entry.resetTime < now) {
-    rateLimitMap.set(ip, {
-      count: 1,
-      resetTime: now + WINDOW_MS
-    });
-    return true;
-  }
-  
-  if (entry.count >= RATE_LIMIT) {
-    return false; 
-  }
-  
-  entry.count++;
-  return true;
-}
-
-const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
 export async function POST(request: Request) {
   try {
-    const forwarded = request.headers.get('x-forwarded-for');
-    const realIp = request.headers.get('x-real-ip');
-    const cfConnectingIp = request.headers.get('cf-connecting-ip'); 
-    
-    let ip: string;
-    if (forwarded) {
-      ip = forwarded.split(',')[0].trim();
-    } else if (realIp) {
-      ip = realIp.trim();
-    } else if (cfConnectingIp) {
-      ip = cfConnectingIp.trim();
-    } else {
-      // Use a shared identifier for all unknown IPs to prevent bypass
-      ip = 'unknown-shared';
-      console.warn('Unable to determine client IP - using shared rate limit', {
-        userAgent: request.headers.get('user-agent'),
-        origin: request.headers.get('origin'),
-        referer: request.headers.get('referer')
-      });
-    }
-    
-    const isAllowed = checkRateLimit(ip);
-    
-    if (!isAllowed) {
-      return NextResponse.json(
-        { error: 'Too many subscription attempts. Please try again later.' },
-        { status: 429 }
-      );
-    }
-
     const body = await request.json();
     const { email } = body;
 
@@ -104,7 +23,7 @@ export async function POST(request: Request) {
       );
     }
 
-    if (!emailRegex.test(email)) {
+    if (!EMAIL_REGEX.test(email)) {
       return NextResponse.json(
         { error: 'Invalid email format' },
         { status: 400 }

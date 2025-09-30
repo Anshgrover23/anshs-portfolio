@@ -31,7 +31,7 @@ export const Newsletter = () => {
       const data = await response.json();
 
       if (response.ok) {
-        toast.success(data.message || "Thanks for subscribing! I'll keep you updated.");
+        toast.success(data.message);
         setEmail('');
       } else if (response.status === 429) {
         toast.error('Too many attempts. Please try again later.');
