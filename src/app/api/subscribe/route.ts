@@ -1,7 +1,5 @@
 import { NextResponse } from 'next/server';
 import * as brevo from '@getbrevo/brevo';
-import { RateLimiter } from 'limiter';
-import { LRUCache } from 'lru-cache';
 
 interface BrevoApiError {
   response?: {
@@ -12,21 +10,54 @@ interface BrevoApiError {
   };
 }
 
-// Use LRU cache with max size and TTL to prevent memory leaks
-const rateLimiters = new LRUCache<string, RateLimiter>({
-  max: 10000, // Maximum 10,000 entries
-  ttl: 1000 * 60 * 60, // 1 hour TTL
-  updateAgeOnGet: false,
-  updateAgeOnHas: false,
-});
+interface RateLimitEntry {
+  count: number;
+  resetTime: number;
+}
 
-function getRateLimiter(ip: string): RateLimiter {
-  let limiter = rateLimiters.get(ip);
-  if (!limiter) {
-    limiter = new RateLimiter({ tokensPerInterval: 5, interval: 'hour' });
-    rateLimiters.set(ip, limiter);
+// Simple in-memory rate limiter using built-in Map
+const rateLimitMap = new Map<string, RateLimitEntry>();
+const RATE_LIMIT = 5; // 5 requests per hour
+const WINDOW_MS = 60 * 60 * 1000; // 1 hour in milliseconds
+const MAX_ENTRIES = 10000; // Maximum entries to prevent memory leaks
+
+// Cleanup old entries every 10 minutes
+setInterval(() => {
+  const now = Date.now();
+  for (const [key, entry] of rateLimitMap.entries()) {
+    if (entry.resetTime < now) {
+      rateLimitMap.delete(key);
+    }
   }
-  return limiter;
+  // If still too many entries, remove oldest ones
+  if (rateLimitMap.size > MAX_ENTRIES) {
+    const entries = Array.from(rateLimitMap.entries())
+      .sort((a, b) => a[1].resetTime - b[1].resetTime);
+    const toRemove = entries.slice(0, entries.length - MAX_ENTRIES);
+    toRemove.forEach(([key]) => rateLimitMap.delete(key));
+  }
+}, 10 * 60 * 1000);
+
+function checkRateLimit(ip: string): boolean {
+  const now = Date.now();
+  const entry = rateLimitMap.get(ip);
+  
+  if (!entry || entry.resetTime < now) {
+    // No entry or expired, create new one
+    rateLimitMap.set(ip, {
+      count: 1,
+      resetTime: now + WINDOW_MS
+    });
+    return true;
+  }
+  
+  if (entry.count >= RATE_LIMIT) {
+    return false; // Rate limit exceeded
+  }
+  
+  // Increment count
+  entry.count++;
+  return true;
 }
 
 const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -51,10 +82,9 @@ export async function POST(request: Request) {
       console.warn('Unable to determine client IP - using unique identifier for rate limiting');
     }
     
-    const limiter = getRateLimiter(ip);
-    const hasToken = await limiter.tryRemoveTokens(1);
+    const isAllowed = checkRateLimit(ip);
     
-    if (!hasToken) {
+    if (!isAllowed) {
       return NextResponse.json(
         { error: 'Too many subscription attempts. Please try again later.' },
         { status: 429 }
