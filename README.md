@@ -43,3 +43,20 @@ npm run build
 ---
 
 Feel free to fork, star, or contribute! Don't forget to follow me as well.
+
+## Email Subscription (Brevo) Setup
+
+1. Copy the environment template and fill in your keys:
+
+```sh
+cp .env.example .env.local 
+```
+
+2. Set the following variables in `.env.local`:
+
+```env
+BREVO_API_KEY=your_brevo_api_key
+```
+
+Note:
+- `BREVO_API_KEY` is required for the `/api/subscribe` endpoint to work.
