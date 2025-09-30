@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 import * as brevo from '@getbrevo/brevo';
 import { RateLimiter } from 'limiter';
+import { LRUCache } from 'lru-cache';
 
 interface BrevoApiError {
   response?: {
@@ -11,21 +12,44 @@ interface BrevoApiError {
   };
 }
 
-const rateLimiters = new Map<string, RateLimiter>();
+// Use LRU cache with max size and TTL to prevent memory leaks
+const rateLimiters = new LRUCache<string, RateLimiter>({
+  max: 10000, // Maximum 10,000 entries
+  ttl: 1000 * 60 * 60, // 1 hour TTL
+  updateAgeOnGet: false,
+  updateAgeOnHas: false,
+});
 
 function getRateLimiter(ip: string): RateLimiter {
-  if (!rateLimiters.has(ip)) {
-    rateLimiters.set(ip, new RateLimiter({ tokensPerInterval: 5, interval: 'hour' }));
+  let limiter = rateLimiters.get(ip);
+  if (!limiter) {
+    limiter = new RateLimiter({ tokensPerInterval: 5, interval: 'hour' });
+    rateLimiters.set(ip, limiter);
   }
-  return rateLimiters.get(ip)!;
+  return limiter;
 }
 
 const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 export async function POST(request: Request) {
   try {
+    // Improved IP detection with better handling for unknown IPs
     const forwarded = request.headers.get('x-forwarded-for');
-    const ip = forwarded ? forwarded.split(',')[0] : 'unknown';
+    const realIp = request.headers.get('x-real-ip');
+    const cfConnectingIp = request.headers.get('cf-connecting-ip'); // Cloudflare
+    
+    let ip: string;
+    if (forwarded) {
+      ip = forwarded.split(',')[0].trim();
+    } else if (realIp) {
+      ip = realIp.trim();
+    } else if (cfConnectingIp) {
+      ip = cfConnectingIp.trim();
+    } else {
+      // Generate a unique identifier for unknown IPs using timestamp and random value
+      ip = `unknown-${Date.now()}-${Math.random().toString(36).substring(7)}`;
+      console.warn('Unable to determine client IP - using unique identifier for rate limiting');
+    }
     
     const limiter = getRateLimiter(ip);
     const hasToken = await limiter.tryRemoveTokens(1);
@@ -70,9 +94,18 @@ export async function POST(request: Request) {
     
     const createContact = new brevo.CreateContact();
     createContact.email = email;
-    createContact.listIds = process.env.BREVO_LIST_ID 
-      ? [parseInt(process.env.BREVO_LIST_ID)] 
-      : undefined;
+    // Validate BREVO_LIST_ID before parsing to prevent NaN
+    if (process.env.BREVO_LIST_ID) {
+      const listId = parseInt(process.env.BREVO_LIST_ID, 10);
+      if (!isNaN(listId)) {
+        createContact.listIds = [listId];
+      } else {
+        console.warn('Invalid BREVO_LIST_ID format:', process.env.BREVO_LIST_ID);
+        createContact.listIds = undefined;
+      }
+    } else {
+      createContact.listIds = undefined;
+    }
     createContact.updateEnabled = true; 
     
     try {
