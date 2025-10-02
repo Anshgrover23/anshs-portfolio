@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 import * as brevo from '@getbrevo/brevo';
-import { EMAIL_REGEX } from '@/Constants';
+import { EMAIL_REGEX } from '@/validation';
 
 interface BrevoApiError {
   response?: {

@@ -1,5 +1,6 @@
 "use client"
 import { useState, useRef, useLayoutEffect } from 'react';
+import { usePathname, useRouter } from 'next/navigation';
 import {
   Home,
   User,
@@ -9,6 +10,7 @@ import {
   Mail,
   Menu,
   X,
+  BookOpen,
 } from 'lucide-react';
 
 export const Navigation = () => {
@@ -20,6 +22,27 @@ export const Navigation = () => {
     opacity: 0,
   });
   const navRefs = useRef<(HTMLAnchorElement | null)[]>([]);
+  const pathname = usePathname();
+  const router = useRouter();
+
+  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    e.preventDefault();
+    
+    if (href.startsWith('#')) {
+      if (pathname !== '/') {
+        router.push('/' + href);
+      } else {
+        const element = document.querySelector(href);
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }
+      }
+    } else {
+      router.push(href);
+    }
+    
+    setIsOpen(false);
+  };
 
   const navItems = [
     { icon: Home, label: 'Home', href: '#home' },
@@ -27,6 +50,7 @@ export const Navigation = () => {
     { icon: Briefcase, label: 'Experience', href: '#experience' },
     { icon: GraduationCap, label: 'Education', href: '#education' },
     { icon: Code, label: 'Skills', href: '#skills' },
+    { icon: BookOpen, label: 'Blog', href: '/blog' },
     { icon: Mail, label: 'Contact', href: '#contact' },
   ];
 
@@ -69,7 +93,8 @@ export const Navigation = () => {
                   key={index}
                   href={item.href}
                   ref={el => {navRefs.current[index] = el}}
-                  className="flex items-center gap-2 text-gray-300 hover:text-white transition-all duration-300 hover:scale-110 relative z-10 px-2 py-1"
+                  onClick={(e) => handleNavClick(e, item.href)}
+                  className="flex items-center gap-2 text-gray-300 hover:text-white transition-all duration-300 hover:scale-110 relative z-10 px-2 py-1 cursor-pointer"
                   onMouseEnter={() => setHoveredIndex(index)}
                   onMouseLeave={() => setHoveredIndex(null)}
                 >
@@ -113,8 +138,8 @@ export const Navigation = () => {
                       <a
                         key={index}
                         href={item.href}
-                        onClick={() => setIsOpen(false)}
-                        className="flex items-center gap-4 text-gray-300 hover:text-white transition-colors py-3 border-b border-gray-700/50 last:border-b-0"
+                        onClick={(e) => handleNavClick(e, item.href)}
+                        className="flex items-center gap-4 text-gray-300 hover:text-white transition-colors py-3 border-b border-gray-700/50 last:border-b-0 cursor-pointer"
                       >
                         <Icon className="w-5 h-5" />
                         <span className="text-lg font-medium">
