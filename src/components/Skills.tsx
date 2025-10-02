@@ -46,7 +46,7 @@ export const Skills = () => {
       <div className="space-y-8">
         {skillCategories.map((category, index) => (
           <div key={index} className="p-6 rounded-lg bg-gray-900/50">
-            <h3 className="text-lg font-semibold mb-4 text-purple-400">
+            <h3 className="text-xl font-semibold mb-4 text-purple-400">
               {category.title}
             </h3>
             <div className="flex flex-wrap gap-2">
@@ -58,7 +58,7 @@ export const Skills = () => {
                 >
                   {/* conditionally showing icon and emoji */}
                   {skill.icon.endsWith('.svg') ? (
-                    <Image src={skill.icon} alt={`${skill.name}-svg`} width={15} height={15} className={`${skill.name === 'Next.js' && 'invert'} ${skill.name === 'Rust' && 'w-4'}`}/>
+                    <Image src={skill.icon} alt={`${skill.name}-svg`} width={20} height={20} className={`${skill.name === 'Next.js' && 'invert'} ${skill.name === 'Rust' && 'w-4'}`}/>
                   ) : (
                     <span>{skill.icon}</span>
                   )}
