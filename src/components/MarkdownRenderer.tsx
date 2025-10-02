@@ -8,13 +8,12 @@ interface MarkdownRendererProps {
 export const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({ content }) => {
   const renderContent = () => {
     const lines = content.split('\n');
-    const elements: JSX.Element[] = [];
+    const elements: React.ReactElement[] = [];
     let inCodeBlock = false;
     let codeBlockContent: string[] = [];
     let codeBlockLang = '';
 
     lines.forEach((line, index) => {
-      // Code blocks
       if (line.startsWith('```')) {
         if (!inCodeBlock) {
           inCodeBlock = true;
@@ -80,6 +79,19 @@ export const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({ content }) =
         elements.push(<div key={index} className="h-2" />);
       }
     });
+
+    if (inCodeBlock) {
+      elements.push(
+        <div key={`code-unclosed`} className="my-4 rounded-lg overflow-hidden">
+          <div className="bg-gray-800 px-4 py-2 text-xs text-gray-400 border-b border-gray-700">
+            {codeBlockLang || 'code'}
+          </div>
+          <pre className="bg-gray-900 p-4 overflow-x-auto">
+            <code className="text-sm text-gray-300">{codeBlockContent.join('\n')}</code>
+          </pre>
+        </div>
+      );
+    }
 
     return elements;
   };

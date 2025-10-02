@@ -1,5 +1,4 @@
-"use client"
-import { notFound, useParams } from 'next/navigation';
+import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { getBlogPost } from '@/data/blogPosts';
 import { Calendar, Clock, ArrowLeft, User } from 'lucide-react';
@@ -8,9 +7,8 @@ import { AnimatedSocialLinks } from '@/components/AnimatedSocialLinks';
 import { MarkdownRenderer } from '@/components/MarkdownRenderer';
 import { Newsletter } from '@/components/Newsletter';
 
-export default function BlogPostPage() {
-  const params = useParams();
-  const slug = params?.slug as string;
+export default async function BlogPostPage({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
   const post = getBlogPost(slug);
 
   if (!post) {

@@ -1,68 +1,62 @@
 import { BlogPost } from '@/types/blog';
+import fs from 'fs';
+import path from 'path';
+import matter from 'gray-matter';
 
-export const blogPosts: BlogPost[] = [
-  {
-    slug: 'getting-started-with-nextjs',
-    title: 'Getting Started with Next.js 15',
-    excerpt: 'Learn how to build modern web applications with Next.js 15 and its latest features.',
-    content: `
-# Getting Started with Next.js 15
+const blogsDirectory = path.join(process.cwd(), 'blogs');
 
-Next.js 15 brings exciting new features and improvements to the React framework we all love. In this post, we'll explore some of the key features and how to get started.
-
-## What's New in Next.js 15?
-
-Next.js 15 introduces several improvements:
-
-- **Turbopack**: Faster development builds
-- **Improved Server Components**: Better performance and SEO
-- **Enhanced Image Optimization**: Automatic image optimization out of the box
-- **Better TypeScript Support**: Improved type checking and inference
-
-## Getting Started
-
-To create a new Next.js 15 project, run:
-
-\`\`\`bash
-npx create-next-app@latest my-app
-\`\`\`
-
-This will set up a new Next.js project with all the latest features and best practices.
-
-## Project Structure
-
-A typical Next.js 15 project has the following structure:
-
-\`\`\`
-my-app/
-├── src/
-│   ├── app/
-│   │   ├── layout.tsx
-│   │   └── page.tsx
-│   └── components/
-├── public/
-└── package.json
-\`\`\`
-
-## Conclusion
-
-Next.js 15 is a powerful framework that makes building React applications a breeze. Give it a try in your next project!
-    `,
-    date: '2024-10-02',
-    readTime: '2 min read',
-    tags: ['Next.js', 'React', 'Web Development'],
-    author: 'Ansh Grover',
-  }
-];
+let cachedBlogPosts: BlogPost[] | null = null;
 
 export function getBlogPosts(): BlogPost[] {
-  return blogPosts.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+  if (cachedBlogPosts) {
+    return cachedBlogPosts;
+  }
+
+  try {
+    if (!fs.existsSync(blogsDirectory)) {
+      console.warn('Blogs directory not found');
+      return [];
+    }
+
+    const fileNames = fs.readdirSync(blogsDirectory);
+    const allPostsData: BlogPost[] = fileNames
+      .filter((fileName) => fileName.endsWith('.mdx') || fileName.endsWith('.md'))
+      .map((fileName) => {
+        const slug = fileName.replace(/\.mdx?$/, '');
+        const fullPath = path.join(blogsDirectory, fileName);
+        const fileContents = fs.readFileSync(fullPath, 'utf8');
+        const matterResult = matter(fileContents);
+
+        return {
+          slug,
+          title: matterResult.data.title || 'Untitled',
+          excerpt: matterResult.data.excerpt || '',
+          content: matterResult.content,
+          date: matterResult.data.date || new Date().toISOString().split('T')[0],
+          readTime: matterResult.data.readTime || '5 min read',
+          tags: matterResult.data.tags || [],
+          author: matterResult.data.author || 'Ansh Grover',
+          coverImage: matterResult.data.coverImage,
+        };
+      });
+
+    cachedBlogPosts = allPostsData.sort((a, b) => 
+      new Date(b.date).getTime() - new Date(a.date).getTime()
+    );
+
+    return cachedBlogPosts;
+  } catch (error) {
+    console.error('Error reading blog posts:', error);
+    return [];
+  }
 }
 
 export function getBlogPost(slug: string): BlogPost | undefined {
-  return blogPosts.find(post => post.slug === slug);
+  const posts = getBlogPosts();
+  return posts.find((post) => post.slug === slug);
 }
 
 export function getBlogPostSlugs(): string[] {
-  return blogPosts.map(post => post.slug);
+  const posts = getBlogPosts();
+  return posts.map((post) => post.slug);
 }
