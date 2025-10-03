@@ -102,7 +102,7 @@ export const Experience = () => {
       };
     };
 
-   
+
 
   // Group contributions by company/org
   const experiences: Record<string, ExpType> = contributions.reduce(
@@ -252,7 +252,7 @@ export const Experience = () => {
                 <span className="text-gray-400 text-sm">{exp.period}</span>
               </div>
               <p className="text-purple-400 mb-2">{exp.role}</p>
-              <p className="text-gray-300 text-sm mb-3">{}exp.description</p>
+              <p className="text-gray-300 text-sm mb-3">{exp.description}</p>
 
               <div className="flex flex-wrap items-start gap-4 mb-2">
                 <div className="flex items-center gap-2">
