@@ -84,7 +84,7 @@ interface CacheData {
 }
 
 const CACHE_FILE = path.join(process.cwd(), 'src/data/prCache.json');
-const CACHE_DURATION =  24 * 60 * 60 * 1000;
+const CACHE_DURATION = 24 * 60 * 60 * 1000;
 
 function loadCache(): CacheData | null {
   try {
@@ -140,10 +140,7 @@ function parseIssueRefs(
 }
 
 // Extract bounty from labels - just return the label as-is
-function extractBountyFromText(
-  texts: string[],
-  labels: string[] = []
-): string | undefined {
+function extractBountyFromText(labels: string[] = []): string | undefined {
   // 1. Look for labels that start with $ and contain numbers (antiwork style)
   for (const label of labels) {
     if (/^\$[\d.,kK]+$/.test(label.trim())) {
@@ -183,12 +180,18 @@ async function detectBounty(
 ): Promise<string | undefined> {
   console.log(`🔍 Checking bounty for PR #${pr.number}: ${pr.title}`);
 
-  const bountyFromPR = extractBountyFromText([pr.body || '']);
-  if (bountyFromPR) {
-    console.log(`💰 Found bounty in PR body: ${bountyFromPR}`);
-    return bountyFromPR;
+  let algoraBounty: string | undefined;
+  let issueBounty: string | undefined;
+
+  // Check Algora bot comments for tscircuit (on PR)
+  if (org === 'tscircuit') {
+    algoraBounty = await checkAlgoraBotComments(org, repo, pr.number);
+    if (algoraBounty) {
+      console.log(`💰 Found Algora bounty in PR: ${algoraBounty}`);
+    }
   }
 
+  // Check linked issues for bounty information
   const refs = parseIssueRefs(pr.body, org, repo);
   console.log(`🔗 Found ${refs.length} issue references:`, refs);
 
@@ -202,14 +205,28 @@ async function detectBounty(
       console.log(`✅ Issue found: ${issue.title}`);
       console.log(`🏷️ Labels:`, issue.labels?.map(l => l.name) || []);
 
-      const bounty = extractBountyFromText(
-        [issue.title || '', issue.body || ''],
+      // Check for Algora bot comments on the issue (this is where the award comments often are!)
+      if (org === 'tscircuit' && !algoraBounty) {
+        const issueAlgoraBounty = await checkAlgoraBotComments(
+          ref.org,
+          ref.repo,
+          ref.number
+        );
+        if (issueAlgoraBounty) {
+          console.log(
+            `💰 Found Algora bounty in issue #${ref.number}: ${issueAlgoraBounty}`
+          );
+          algoraBounty = issueAlgoraBounty;
+        }
+      }
+
+      const labelBounty = extractBountyFromText(
         issue.labels?.map(l => l.name) || []
       );
-
-      if (bounty) {
-        console.log(`💰 Found bounty in issue: ${bounty}`);
-        return bounty;
+      if (labelBounty) {
+        console.log(`💰 Found bounty in issue labels: ${labelBounty}`);
+        issueBounty = labelBounty;
+        if (!algoraBounty) break; // Only break if we haven't found an Algora comment yet
       } else {
         console.log(`❌ No bounty found in issue #${ref.number}`);
       }
@@ -219,7 +236,88 @@ async function detectBounty(
     await new Promise(r => setTimeout(r, 80));
   }
 
+  // Prioritize specific dollar amounts over generic "Rewarded" labels
+  if (algoraBounty && algoraBounty.startsWith('$')) {
+    return algoraBounty;
+  }
+  if (issueBounty && issueBounty.startsWith('$')) {
+    return issueBounty;
+  }
+  if (algoraBounty) {
+    return algoraBounty;
+  }
+  if (issueBounty) {
+    return issueBounty;
+  }
+
   console.log(`❌ No bounty found for PR #${pr.number}`);
+  return undefined;
+}
+
+async function checkAlgoraBotComments(
+  org: string,
+  repo: string,
+  prNumber: number
+): Promise<string | undefined> {
+  try {
+    console.log(`🤖 Checking Algora bot comments for PR #${prNumber}...`);
+    const { data: comments } = await axios.get(
+      `https://api.github.com/repos/${org}/${repo}/issues/${prNumber}/comments`,
+      { headers: getHeaders() }
+    );
+
+    // Look for Algora bot comments
+    for (const comment of comments) {
+      console.log(
+        `👤 Comment by: ${comment.user.login}, type: ${comment.user.type}`
+      );
+
+      if (
+        comment.user.login === 'algora-pbc[bot]' ||
+        (comment.user.type === 'Bot' && comment.body.includes('bounty')) ||
+        (comment.user.type === 'Bot' && comment.body.includes('awarded'))
+      ) {
+        console.log(
+          `🤖 Found Algora bot comment: ${comment.body.substring(0, 100)}...`
+        );
+
+        // Look for dollar amounts in various formats
+        const bountyMatches = [
+          /\$(\d+(?:,\d{3})*(?:\.\d{2})?)/g, // $7, $100, $1,000
+          /has been awarded \$(\d+)/g, // "has been awarded $7"
+          /\/tip \$(\d+)/g, // "/tip $3"
+          /bounty.*?\$(\d+)/gi, // "bounty $7"
+          /\$(\d+).*bounty/gi, // "$7 bounty"
+        ];
+
+        for (const regex of bountyMatches) {
+          const match = comment.body.match(regex);
+          if (match) {
+            console.log(`💰 Found bounty pattern: ${match[0]}`);
+            const amount = match[0].match(/\$(\d+)/)?.[1];
+            if (amount) {
+              return `$${amount}`;
+            }
+          }
+        }
+
+        // Fallback: look for emoji patterns
+        if (comment.body.includes('💰') || comment.body.includes('bounty')) {
+          console.log(`💰 Found generic bounty indicator`);
+          return '💰 Rewarded';
+        }
+      }
+    }
+
+    console.log(`❌ No Algora bot comments found for PR #${prNumber}`);
+  } catch (error: unknown) {
+    const errorMessage = error instanceof Error ? error.message : String(error);
+    console.log(
+      `❌ Failed to fetch comments for PR #${prNumber}:`,
+      errorMessage
+    );
+  }
+
   return undefined;
 }
 
@@ -270,28 +368,28 @@ async function fetchMergedPRsForRepo(
       break;
     }
 
-      for (const pr of mergedByUser) {
-        const bounty = await detectBounty(org, repo, pr);
+    for (const pr of mergedByUser) {
+      const bounty = await detectBounty(org, repo, pr);
 
-        if (bounty) {
-          console.log(`💰 Adding PR with bounty: ${pr.title} (${bounty})`);
-          results.push({
-            org,
-            repo,
-            title: pr.title,
-            description: pr.body || '',
-            link: pr.html_url,
-            mergedAt: pr.merged_at as string,
-            createdAt: pr.created_at,
-            author: pr.user.login,
-            number: pr.number,
-            bounty,
-          });
-        } else {
-          console.log(`⏭️ Skipping PR without bounty: ${pr.title}`);
-        }
-        await new Promise(r => setTimeout(r, 80));
+      if (bounty) {
+        console.log(`💰 Adding PR with bounty: ${pr.title} (${bounty})`);
+        results.push({
+          org,
+          repo,
+          title: pr.title,
+          description: pr.body || '',
+          link: pr.html_url,
+          mergedAt: pr.merged_at as string,
+          createdAt: pr.created_at,
+          author: pr.user.login,
+          number: pr.number,
+          bounty,
+        });
+      } else {
+        console.log(`⏭️ Skipping PR without bounty: ${pr.title}`);
       }
+      await new Promise(r => setTimeout(r, 80));
+    }
 
     page += 1;
     // Pace page requests
@@ -350,33 +448,33 @@ async function fetchYourPRs(): Promise<PR[]> {
     }
   }
 
-   let finalData = all;
-   if (cache && since) {
-     console.log(
-       `🔄 Merging ${all.length} new PRs with ${cache.prs.length} cached PRs`
-     );
+  let finalData = all;
+  if (cache && since) {
+    console.log(
+      `🔄 Merging ${all.length} new PRs with ${cache.prs.length} cached PRs`
+    );
 
-     // Remove duplicates and merge
-     const existingPRs = cache.prs.filter(
-       cachedPR =>
-         !all.some(
-           newPR =>
-             newPR.org === cachedPR.org &&
-             newPR.repo === cachedPR.repo &&
-             newPR.number === cachedPR.number
-         )
-     );
-     finalData = [...existingPRs, ...all];
-   }
-finalData.sort(
-  (a, b) => new Date(b.mergedAt).getTime() - new Date(a.mergedAt).getTime()
-);
+    // Remove duplicates and merge
+    const existingPRs = cache.prs.filter(
+      cachedPR =>
+        !all.some(
+          newPR =>
+            newPR.org === cachedPR.org &&
+            newPR.repo === cachedPR.repo &&
+            newPR.number === cachedPR.number
+        )
+    );
+    finalData = [...existingPRs, ...all];
+  }
+  finalData.sort(
+    (a, b) => new Date(b.mergedAt).getTime() - new Date(a.mergedAt).getTime()
+  );
 
-// Save to cache
-saveCache(finalData);
-console.log(`💾 Cached ${finalData.length} total PRs`);
+  // Save to cache
+  saveCache(finalData);
+  console.log(`💾 Cached ${finalData.length} total PRs`);
 
-return finalData;
+  return finalData;
 }
 
 async function savePRs() {

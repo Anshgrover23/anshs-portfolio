@@ -8,7 +8,7 @@ export interface PR {
   createdAt: string;
   author: string;
   number: number;
-  bounty?: string; // Added bounty field
+  bounty?: string; 
 }
 
 export interface Experience {
@@ -20,7 +20,7 @@ export interface Experience {
   link: string;
   totalPRs: number;
   totalBounties: string;
-  bountyCount: number; // Added bounty count
+  bountyCount: number;
   contributions: Contribution[];
 }
 
@@ -28,7 +28,7 @@ export interface Contribution {
   title: string;
   description: string;
   link: string;
-  bounty?: string; // Added bounty field
+  bounty?: string;
 }
 
 export interface CompanyData {

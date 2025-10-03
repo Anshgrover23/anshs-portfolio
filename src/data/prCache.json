@@ -1,5 +1,5 @@
 {
-  "lastFetched": "2025-10-03T07:38:29.586Z",
+  "lastFetched": "2025-10-03T10:44:04.727Z",
   "prs": [
     {
       "org": "antiwork",
@@ -527,7 +527,7 @@
       "createdAt": "2025-05-12T17:22:56Z",
       "author": "Anshgrover23",
       "number": 1084,
-      "bounty": "$4"
+      "bounty": "$5"
     },
     {
       "org": "tscircuit",
@@ -539,7 +539,7 @@
       "createdAt": "2025-05-11T16:59:40Z",
       "author": "Anshgrover23",
       "number": 197,
-      "bounty": "$20"
+      "bounty": "$15"
     },
     {
       "org": "tscircuit",
@@ -575,7 +575,7 @@
       "createdAt": "2025-03-30T19:25:01Z",
       "author": "Anshgrover23",
       "number": 196,
-      "bounty": "💰 Rewarded"
+      "bounty": "$3"
     },
     {
       "org": "tscircuit",
@@ -587,7 +587,7 @@
       "createdAt": "2025-03-29T16:02:18Z",
       "author": "Anshgrover23",
       "number": 721,
-      "bounty": "💰 Rewarded"
+      "bounty": "$7"
     },
     {
       "org": "tscircuit",
@@ -599,7 +599,7 @@
       "createdAt": "2025-03-24T19:58:13Z",
       "author": "Anshgrover23",
       "number": 253,
-      "bounty": "💰 Rewarded"
+      "bounty": "$10"
     },
     {
       "org": "tscircuit",
@@ -611,7 +611,7 @@
       "createdAt": "2025-03-24T12:49:44Z",
       "author": "Anshgrover23",
       "number": 746,
-      "bounty": "💰 Rewarded"
+      "bounty": "$5"
     },
     {
       "org": "tscircuit",
@@ -623,7 +623,7 @@
       "createdAt": "2025-03-22T08:35:01Z",
       "author": "Anshgrover23",
       "number": 99,
-      "bounty": "💰 Rewarded"
+      "bounty": "$10"
     },
     {
       "org": "tscircuit",
@@ -635,7 +635,7 @@
       "createdAt": "2025-03-22T06:32:58Z",
       "author": "Anshgrover23",
       "number": 163,
-      "bounty": "💰 Rewarded"
+      "bounty": "$10"
     },
     {
       "org": "tscircuit",
@@ -647,7 +647,7 @@
       "createdAt": "2025-03-21T16:18:45Z",
       "author": "Anshgrover23",
       "number": 176,
-      "bounty": "💰 Rewarded"
+      "bounty": "$2"
     },
     {
       "org": "tscircuit",
@@ -659,7 +659,7 @@
       "createdAt": "2025-03-02T05:19:07Z",
       "author": "Anshgrover23",
       "number": 678,
-      "bounty": "💰 Rewarded"
+      "bounty": "$3"
     },
     {
       "org": "tscircuit",
@@ -671,7 +671,7 @@
       "createdAt": "2025-02-28T05:51:05Z",
       "author": "Anshgrover23",
       "number": 190,
-      "bounty": "💰 Rewarded"
+      "bounty": "$5"
     },
     {
       "org": "tscircuit",
@@ -683,7 +683,7 @@
       "createdAt": "2025-02-27T12:53:49Z",
       "author": "Anshgrover23",
       "number": 10,
-      "bounty": "💰 Rewarded"
+      "bounty": "$2"
     },
     {
       "org": "tscircuit",
@@ -695,7 +695,7 @@
       "createdAt": "2025-02-21T19:30:56Z",
       "author": "Anshgrover23",
       "number": 214,
-      "bounty": "💰 Rewarded"
+      "bounty": "$2"
     },
     {
       "org": "tscircuit",
@@ -707,7 +707,7 @@
       "createdAt": "2025-02-20T10:53:50Z",
       "author": "Anshgrover23",
       "number": 209,
-      "bounty": "💰 Rewarded"
+      "bounty": "$10"
     },
     {
       "org": "tscircuit",
@@ -719,7 +719,7 @@
       "createdAt": "2025-02-20T05:30:46Z",
       "author": "Anshgrover23",
       "number": 172,
-      "bounty": "💰 Rewarded"
+      "bounty": "$7"
     },
     {
       "org": "tscircuit",
@@ -731,7 +731,7 @@
       "createdAt": "2025-02-17T19:07:12Z",
       "author": "Anshgrover23",
       "number": 636,
-      "bounty": "💰 Rewarded"
+      "bounty": "$5"
     },
     {
       "org": "tscircuit",
@@ -743,7 +743,7 @@
       "createdAt": "2025-02-17T16:47:09Z",
       "author": "Anshgrover23",
       "number": 201,
-      "bounty": "💰 Rewarded"
+      "bounty": "$10"
     },
     {
       "org": "tscircuit",
@@ -755,7 +755,19 @@
       "createdAt": "2025-02-16T17:32:59Z",
       "author": "Anshgrover23",
       "number": 633,
-      "bounty": "💰 Rewarded"
+      "bounty": "$25"
+    },
+    {
+      "org": "tscircuit",
+      "repo": "core",
+      "title": "add maxVoltageRating to capacitor",
+      "description": "Fixes #622 ",
+      "link": "https://github.com/tscircuit/core/pull/629",
+      "mergedAt": "2025-02-15T19:15:50Z",
+      "createdAt": "2025-02-15T10:27:15Z",
+      "author": "Anshgrover23",
+      "number": 629,
+      "bounty": "$3"
     },
     {
       "org": "tscircuit",
@@ -767,7 +779,7 @@
       "createdAt": "2025-02-15T05:12:06Z",
       "author": "Anshgrover23",
       "number": 79,
-      "bounty": "💰 Rewarded"
+      "bounty": "$15"
     },
     {
       "org": "tscircuit",
@@ -779,7 +791,7 @@
       "createdAt": "2025-02-13T18:05:55Z",
       "author": "Anshgrover23",
       "number": 626,
-      "bounty": "💰 Rewarded"
+      "bounty": "$15"
     },
     {
       "org": "tscircuit",
@@ -791,7 +803,7 @@
       "createdAt": "2025-02-13T12:12:44Z",
       "author": "Anshgrover23",
       "number": 625,
-      "bounty": "💰 Rewarded"
+      "bounty": "$7"
     },
     {
       "org": "tscircuit",
@@ -803,7 +815,7 @@
       "createdAt": "2025-02-11T15:58:46Z",
       "author": "Anshgrover23",
       "number": 618,
-      "bounty": "💰 Rewarded"
+      "bounty": "$20"
     },
     {
       "org": "tscircuit",
@@ -815,7 +827,7 @@
       "createdAt": "2025-01-28T11:29:40Z",
       "author": "Anshgrover23",
       "number": 16,
-      "bounty": "💰 Rewarded"
+      "bounty": "$7"
     },
     {
       "org": "tscircuit",
@@ -827,7 +839,7 @@
       "createdAt": "2025-01-30T13:25:30Z",
       "author": "Anshgrover23",
       "number": 141,
-      "bounty": "💰 Rewarded"
+      "bounty": "$2"
     },
     {
       "org": "tscircuit",
@@ -839,7 +851,7 @@
       "createdAt": "2025-01-21T15:02:04Z",
       "author": "Anshgrover23",
       "number": 37,
-      "bounty": "💰 Rewarded"
+      "bounty": "$10"
     },
     {
       "org": "tscircuit",
@@ -851,7 +863,7 @@
       "createdAt": "2025-01-19T06:33:32Z",
       "author": "Anshgrover23",
       "number": 81,
-      "bounty": "💰 Rewarded"
+      "bounty": "$15"
     },
     {
       "org": "tscircuit",
@@ -863,7 +875,7 @@
       "createdAt": "2025-01-17T13:46:43Z",
       "author": "Anshgrover23",
       "number": 25,
-      "bounty": "💰 Rewarded"
+      "bounty": "$2"
     },
     {
       "org": "tscircuit",
@@ -875,7 +887,7 @@
       "createdAt": "2025-01-17T12:04:53Z",
       "author": "Anshgrover23",
       "number": 6,
-      "bounty": "💰 Rewarded"
+      "bounty": "$10"
     },
     {
       "org": "tscircuit",
@@ -887,7 +899,7 @@
       "createdAt": "2025-01-15T14:39:55Z",
       "author": "Anshgrover23",
       "number": 575,
-      "bounty": "💰 Rewarded"
+      "bounty": "$5"
     },
     {
       "org": "tscircuit",
@@ -899,7 +911,7 @@
       "createdAt": "2025-01-13T12:27:50Z",
       "author": "Anshgrover23",
       "number": 3,
-      "bounty": "💰 Rewarded"
+      "bounty": "$25"
     },
     {
       "org": "tscircuit",
@@ -911,7 +923,7 @@
       "createdAt": "2025-01-13T16:48:10Z",
       "author": "Anshgrover23",
       "number": 4,
-      "bounty": "💰 Rewarded"
+      "bounty": "$40"
     },
     {
       "org": "tscircuit",
@@ -923,7 +935,7 @@
       "createdAt": "2025-01-13T07:38:47Z",
       "author": "Anshgrover23",
       "number": 2,
-      "bounty": "💰 Rewarded"
+      "bounty": "$40"
     },
     {
       "org": "tscircuit",
@@ -935,7 +947,7 @@
       "createdAt": "2025-01-12T18:39:31Z",
       "author": "Anshgrover23",
       "number": 32,
-      "bounty": "💰 Rewarded"
+      "bounty": "$10"
     },
     {
       "org": "tscircuit",
@@ -947,7 +959,7 @@
       "createdAt": "2025-01-12T15:43:56Z",
       "author": "Anshgrover23",
       "number": 515,
-      "bounty": "💰 Rewarded"
+      "bounty": "$3"
     },
     {
       "org": "tscircuit",
@@ -959,7 +971,7 @@
       "createdAt": "2025-01-11T13:13:20Z",
       "author": "Anshgrover23",
       "number": 511,
-      "bounty": "💰 Rewarded"
+      "bounty": "$5"
     },
     {
       "org": "tscircuit",
@@ -971,7 +983,7 @@
       "createdAt": "2025-01-11T07:24:30Z",
       "author": "Anshgrover23",
       "number": 3,
-      "bounty": "💰 Rewarded"
+      "bounty": "$25"
     },
     {
       "org": "tscircuit",
@@ -983,7 +995,7 @@
       "createdAt": "2025-01-11T12:09:15Z",
       "author": "Anshgrover23",
       "number": 14,
-      "bounty": "💰 Rewarded"
+      "bounty": "$5"
     },
     {
       "org": "tscircuit",
@@ -995,7 +1007,7 @@
       "createdAt": "2025-01-10T18:34:10Z",
       "author": "Anshgrover23",
       "number": 528,
-      "bounty": "💰 Rewarded"
+      "bounty": "$5"
     },
     {
       "org": "tscircuit",
@@ -1007,7 +1019,7 @@
       "createdAt": "2025-01-10T12:52:39Z",
       "author": "Anshgrover23",
       "number": 71,
-      "bounty": "💰 Rewarded"
+      "bounty": "$3"
     },
     {
       "org": "tscircuit",
@@ -1019,7 +1031,7 @@
       "createdAt": "2025-01-09T07:32:39Z",
       "author": "Anshgrover23",
       "number": 28,
-      "bounty": "💰 Rewarded"
+      "bounty": "$10"
     },
     {
       "org": "tscircuit",
@@ -1031,7 +1043,7 @@
       "createdAt": "2025-01-07T09:19:25Z",
       "author": "Anshgrover23",
       "number": 119,
-      "bounty": "💰 Rewarded"
+      "bounty": "$3"
     },
     {
       "org": "tscircuit",
@@ -1043,7 +1055,7 @@
       "createdAt": "2025-01-07T07:01:44Z",
       "author": "Anshgrover23",
       "number": 4,
-      "bounty": "💰 Rewarded"
+      "bounty": "$3"
     },
     {
       "org": "tscircuit",
@@ -1055,7 +1067,7 @@
       "createdAt": "2025-01-06T09:43:06Z",
       "author": "Anshgrover23",
       "number": 25,
-      "bounty": "💰 Rewarded"
+      "bounty": "$5"
     },
     {
       "org": "tscircuit",
@@ -1067,7 +1079,7 @@
       "createdAt": "2025-01-06T06:35:06Z",
       "author": "Anshgrover23",
       "number": 23,
-      "bounty": "💰 Rewarded"
+      "bounty": "$5"
     },
     {
       "org": "tscircuit",
@@ -1079,7 +1091,7 @@
       "createdAt": "2025-01-05T20:03:25Z",
       "author": "Anshgrover23",
       "number": 22,
-      "bounty": "💰 Rewarded"
+      "bounty": "$5"
     },
     {
       "org": "tscircuit",
@@ -1091,7 +1103,7 @@
       "createdAt": "2025-01-06T07:37:03Z",
       "author": "Anshgrover23",
       "number": 24,
-      "bounty": "💰 Rewarded"
+      "bounty": "$5"
     },
     {
       "org": "tscircuit",
@@ -1103,7 +1115,7 @@
       "createdAt": "2025-01-05T09:10:58Z",
       "author": "Anshgrover23",
       "number": 13,
-      "bounty": "💰 Rewarded"
+      "bounty": "$5"
     },
     {
       "org": "tscircuit",
@@ -1115,7 +1127,7 @@
       "createdAt": "2025-01-03T12:15:38Z",
       "author": "Anshgrover23",
       "number": 478,
-      "bounty": "💰 Rewarded"
+      "bounty": "$4"
     },
     {
       "org": "tscircuit",
@@ -1127,7 +1139,19 @@
       "createdAt": "2024-12-24T09:15:24Z",
       "author": "Anshgrover23",
       "number": 14,
-      "bounty": "💰 Rewarded"
+      "bounty": "$10"
+    },
+    {
+      "org": "tscircuit",
+      "repo": "tscircuit.com",
+      "title": "Add kicad pcb download option",
+      "description": "Fixes #481 \r\n\r\n### Reference video:\r\n\r\n\r\n\r\n\r\n\r\nhttps://github.com/user-attachments/assets/20cf40e6-f367-43f6-ad0e-6908f451c431\r\n\r\n\r\n\r\n\r\n",
+      "link": "https://github.com/tscircuit/tscircuit.com/pull/482",
+      "mergedAt": "2025-01-03T18:49:25Z",
+      "createdAt": "2025-01-03T14:41:35Z",
+      "author": "Anshgrover23",
+      "number": 482,
+      "bounty": "$3"
     },
     {
       "org": "tscircuit",
@@ -1139,7 +1163,19 @@
       "createdAt": "2025-01-01T19:33:12Z",
       "author": "Anshgrover23",
       "number": 460,
-      "bounty": "💰 Rewarded"
+      "bounty": "$4"
+    },
+    {
+      "org": "tscircuit",
+      "repo": "tscircuit.com",
+      "title": "add algora bounty badge",
+      "description": "Fixes #471",
+      "link": "https://github.com/tscircuit/tscircuit.com/pull/472",
+      "mergedAt": "2025-01-02T16:27:38Z",
+      "createdAt": "2025-01-02T14:42:35Z",
+      "author": "Anshgrover23",
+      "number": 472,
+      "bounty": "$1"
     },
     {
       "org": "tscircuit",
@@ -1151,7 +1187,19 @@
       "createdAt": "2024-12-31T18:19:18Z",
       "author": "Anshgrover23",
       "number": 452,
-      "bounty": "💰 Rewarded"
+      "bounty": "$5"
+    },
+    {
+      "org": "tscircuit",
+      "repo": "tscircuit.com",
+      "title": "update snapshots of homePage test",
+      "description": "Fixes #447 ",
+      "link": "https://github.com/tscircuit/tscircuit.com/pull/448",
+      "mergedAt": "2024-12-31T17:02:16Z",
+      "createdAt": "2024-12-31T09:02:11Z",
+      "author": "Anshgrover23",
+      "number": 448,
+      "bounty": "$3"
     },
     {
       "org": "tscircuit",
@@ -1163,7 +1211,7 @@
       "createdAt": "2024-12-29T07:46:58Z",
       "author": "Anshgrover23",
       "number": 466,
-      "bounty": "💰 Rewarded"
+      "bounty": "$7"
     },
     {
       "org": "tscircuit",
@@ -1175,7 +1223,7 @@
       "createdAt": "2024-12-20T15:14:26Z",
       "author": "Anshgrover23",
       "number": 442,
-      "bounty": "💰 Rewarded"
+      "bounty": "$10"
     },
     {
       "org": "tscircuit",
@@ -1187,7 +1235,7 @@
       "createdAt": "2024-12-27T20:47:37Z",
       "author": "Anshgrover23",
       "number": 434,
-      "bounty": "💰 Rewarded"
+      "bounty": "$5"
     },
     {
       "org": "tscircuit",
@@ -1199,7 +1247,7 @@
       "createdAt": "2024-12-27T17:30:02Z",
       "author": "Anshgrover23",
       "number": 459,
-      "bounty": "💰 Rewarded"
+      "bounty": "$15"
     },
     {
       "org": "tscircuit",
@@ -1211,7 +1259,7 @@
       "createdAt": "2024-12-24T20:27:34Z",
       "author": "Anshgrover23",
       "number": 422,
-      "bounty": "💰 Rewarded"
+      "bounty": "$5"
     },
     {
       "org": "tscircuit",
@@ -1223,7 +1271,7 @@
       "createdAt": "2024-12-24T22:00:03Z",
       "author": "Anshgrover23",
       "number": 10,
-      "bounty": "💰 Rewarded"
+      "bounty": "$15"
     },
     {
       "org": "tscircuit",
@@ -1235,7 +1283,7 @@
       "createdAt": "2024-12-24T19:42:54Z",
       "author": "Anshgrover23",
       "number": 9,
-      "bounty": "💰 Rewarded"
+      "bounty": "$10"
     },
     {
       "org": "tscircuit",
@@ -1247,7 +1295,7 @@
       "createdAt": "2024-12-24T07:14:08Z",
       "author": "Anshgrover23",
       "number": 12,
-      "bounty": "💰 Rewarded"
+      "bounty": "$15"
     },
     {
       "org": "tscircuit",
@@ -1259,7 +1307,7 @@
       "createdAt": "2024-12-23T08:34:58Z",
       "author": "Anshgrover23",
       "number": 108,
-      "bounty": "💰 Rewarded"
+      "bounty": "$5"
     },
     {
       "org": "tscircuit",
@@ -1271,7 +1319,7 @@
       "createdAt": "2024-12-20T14:51:21Z",
       "author": "Anshgrover23",
       "number": 102,
-      "bounty": "💰 Rewarded"
+      "bounty": "$10"
     },
     {
       "org": "tscircuit",
@@ -1283,7 +1331,31 @@
       "createdAt": "2024-12-09T10:18:12Z",
       "author": "Anshgrover23",
       "number": 365,
-      "bounty": "💰 Rewarded"
+      "bounty": "$10"
+    },
+    {
+      "org": "tscircuit",
+      "repo": "schematic-symbols",
+      "title": "add workflow for snapshots validation",
+      "description": "fixes #213 ",
+      "link": "https://github.com/tscircuit/schematic-symbols/pull/223",
+      "mergedAt": "2024-12-10T02:14:07Z",
+      "createdAt": "2024-12-07T14:29:43Z",
+      "author": "Anshgrover23",
+      "number": 223,
+      "bounty": "$12"
+    },
+    {
+      "org": "tscircuit",
+      "repo": "schematic-symbols",
+      "title": "add SVG snapshot validation script and pre-commit hook",
+      "description": "Fixes #213 \r\n/claim #213\r\n\r\n### Screenshots:\r\n![Screenshot from 2024-12-06 21-40-04](https://github.com/user-attachments/assets/c842cf22-0484-4e45-ade9-1b6f66ea0982)\r\n",
+      "link": "https://github.com/tscircuit/schematic-symbols/pull/222",
+      "mergedAt": "2024-12-07T14:10:43Z",
+      "createdAt": "2024-12-06T16:14:28Z",
+      "author": "Anshgrover23",
+      "number": 222,
+      "bounty": "$12"
     },
     {
       "org": "tscircuit",
@@ -1295,7 +1367,7 @@
       "createdAt": "2024-12-05T12:10:57Z",
       "author": "Anshgrover23",
       "number": 351,
-      "bounty": "💰 Rewarded"
+      "bounty": "$5"
     },
     {
       "org": "tscircuit",
@@ -1307,7 +1379,7 @@
       "createdAt": "2024-12-04T04:35:09Z",
       "author": "Anshgrover23",
       "number": 20,
-      "bounty": "💰 Rewarded"
+      "bounty": "$20"
     },
     {
       "org": "tscircuit",
@@ -1319,7 +1391,7 @@
       "createdAt": "2024-12-03T03:33:27Z",
       "author": "Anshgrover23",
       "number": 17,
-      "bounty": "💰 Rewarded"
+      "bounty": "$20"
     },
     {
       "org": "tscircuit",
@@ -1331,7 +1403,7 @@
       "createdAt": "2024-12-01T18:58:43Z",
       "author": "Anshgrover23",
       "number": 8,
-      "bounty": "💰 Rewarded"
+      "bounty": "$20"
     },
     {
       "org": "tscircuit",
@@ -1343,7 +1415,7 @@
       "createdAt": "2024-12-01T11:30:07Z",
       "author": "Anshgrover23",
       "number": 317,
-      "bounty": "💰 Rewarded"
+      "bounty": "$10"
     },
     {
       "org": "tscircuit",
@@ -1355,7 +1427,7 @@
       "createdAt": "2024-11-28T04:29:22Z",
       "author": "Anshgrover23",
       "number": 13,
-      "bounty": "💰 Rewarded"
+      "bounty": "$10"
     },
     {
       "org": "tscircuit",
@@ -1367,7 +1439,7 @@
       "createdAt": "2024-11-29T06:48:34Z",
       "author": "Anshgrover23",
       "number": 302,
-      "bounty": "💰 Rewarded"
+      "bounty": "$5"
     },
     {
       "org": "tscircuit",
@@ -1379,7 +1451,7 @@
       "createdAt": "2024-11-27T18:37:10Z",
       "author": "Anshgrover23",
       "number": 11,
-      "bounty": "💰 Rewarded"
+      "bounty": "$10"
     },
     {
       "org": "tscircuit",
@@ -1391,7 +1463,7 @@
       "createdAt": "2024-11-27T13:03:32Z",
       "author": "Anshgrover23",
       "number": 363,
-      "bounty": "💰 Rewarded"
+      "bounty": "$10"
     },
     {
       "org": "tscircuit",
@@ -1403,7 +1475,7 @@
       "createdAt": "2024-11-27T08:08:40Z",
       "author": "Anshgrover23",
       "number": 3,
-      "bounty": "💰 Rewarded"
+      "bounty": "$10"
     },
     {
       "org": "mediar-ai",
@@ -1427,7 +1499,7 @@
       "createdAt": "2024-11-16T09:54:35Z",
       "author": "Anshgrover23",
       "number": 233,
-      "bounty": "💰 Rewarded"
+      "bounty": "$5"
     }
   ]
 }
