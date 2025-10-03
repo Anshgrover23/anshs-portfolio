@@ -1,231 +1,242 @@
-"use client"
+'use client';
+
 import { useState } from 'react';
 import { CompanyModal } from './CompanyModal';
 import Image from 'next/image';
+import contributionsData from '@/data/newPR.json';
+import {
+  PR,
+  Experience as ExpType,
+  Contribution,
+  CompanyData,
+} from '@/types/PR';
 
 export const Experience = () => {
   const [selectedCompany, setSelectedCompany] = useState<string | null>(null);
 
-  const experiences = [
-    {
-      company: 'antiwork',
-      role: 'Open Source Contributor',
-      period: '2025 - Present',
-      description:
-        'Refactored mailbox logic, improved UI/UX, added equity management.',
-      logo: 'antiwork.svg',
-      link: 'https://github.com/antiwork/helper',
-      totalPRs: '9+',
-      totalBounties: '$6000 (Flexile)',
-      contributions: [
-        {
-          title: 'refactor: rename mailboxId to unused_mailboxId',
-          description:
-            'Renamed mailboxId to unused_mailboxId for clarity and future-proofing.',
-          link: 'https://github.com/antiwork/helper/pull/706',
-          bounty:
-            '$6000 bounty via Flexile(their own contractor payment platform)',
-        },
-        {
-          title:
-            'refactor: replace getMailboxById/getMailboxBySlug with getMailbox',
-          description:
-            'Simplified mailbox retrieval logic by consolidating functions.',
-          link: 'https://github.com/antiwork/helper/pull/704',
-        },
-        {
-          title:
-            'Remove mailbox switcher dropdown and mailboxes.list procedure',
-          description:
-            'Streamlined the UI by removing unnecessary mailbox switcher and related backend procedure.',
-          link: 'https://github.com/antiwork/helper/pull/703',
-        },
-        {
-          title:
-            'Fix: status dot colors for open (green), closed (gray), and spam (red) in conversation filter dropdown',
-          description:
-            'Improved status dot color coding for better visual clarity in the conversation filter dropdown.',
-          link: 'https://github.com/antiwork/helper/pull/683',
-        },
-        {
-          title: 'fix: modal overlay lighter for better UI/UX',
-          description:
-            'Enhanced modal overlay for a lighter, more user-friendly appearance.',
-          link: 'https://github.com/antiwork/helper/pull/684',
-        },
-        {
-          title: 'feat: add equity management feature in settings',
-          description:
-            'Implemented comprehensive equity management functionality in the settings panel.',
-          link: 'https://github.com/antiwork/flexile/pull/673',
-        },
-        {
-          title: 'refactor: consolidate equity flags into equity_enabled',
-          description:
-            'Streamlined equity-related configuration by consolidating multiple flags into a single equity_enabled flag.',
-          link: 'https://github.com/antiwork/flexile/pull/660',
-        },
-        {
-          title: 'fix: build failing on frontend',
-          description: 'Resolved frontend build issues(minor PR)',
-          link: 'https://github.com/antiwork/flexile/pull/651',
-        },
-        {
-          title: 'remove use of companyUpdatesEnabled flag',
-          description:
-            'Removed companyUpdatesEnabled flag to become companyUpdates always true.',
-          link: 'https://github.com/antiwork/flexile/pull/641',
-        },
-      ],
-    },
-    {
-      company: 'TSCircuit',
-      role: 'Open Source Contributor',
-      period: '2024 - Present',
-      description:
-        'Contributing to circuit design tools and testing infrastructure',
-      logo: 'tscircuit.svg',
-      link: 'https://tscircuit.com/',
-      totalPRs: '100+',
-      totalBounties: '$809+',
-      contributions: [
-        {
-          title: 'Issue Roulette Game',
-          description:
-            'Built a full frontend using React & TypeScript that randomly assigns GitHub issues to contributors.',
-          bounty: '$40 bounty',
-          link: 'https://issue-roulette-red.vercel.app/',
-        },
-        {
-          title: 'Contribution Tracker',
-          description:
-            'Designed and implemented the frontend for tracking contributor activities.',
-          link: 'https://contributions.tscircuit.com/',
-        },
-        {
-          title: 'Maintenance Tracker',
-          description:
-            'Boosted flaky test coverage from 5% to 95%+ using Playwright.',
-          bounty: '$20+ bounty',
-          link: 'https://maintenance.tscircuit.com/',
-        },
-        {
-          title: 'Fake Reddit',
-          description:
-            'Set up initial fake-backend endpoints and architecture.',
-          bounty: '$25+ bounty',
-          link: 'https://github.com/tscircuit/fake-reddit/pull/3',
-        },
-      ],
-    },
-    {
-      company: 'Mediar-AI',
-      role: 'Open Source Contributor',
-      period: '2024 - Present',
-      description:
-        'Built dev tools, automation scripts, and published Screenpipe to Homebrew.',
-      logo: 'mediar-ai.svg',
-      link: 'https://www.mediar.ai/',
-      totalPRs: '20+',
-      totalBounties: '$250+',
-      contributions: [
-        {
-          title: 'Highlight Element Debugging Tool',
-          description:
-            'Created a visual bounding box feature for Terminator to help devs debug AI workflows.',
-          bounty: '$100 bounty',
-          link: 'https://github.com/mediar-ai/terminator/pull/41',
-        },
-        {
-          title: 'Gmail Automation Tool',
-          description:
-            'Implements a script to automate Gmail operations like sending mail.',
-          bounty: '$100 bounty',
-          link: 'https://github.com/mediar-ai/terminator/pull/38',
-        },
-        {
-          title: 'VLC Media Player Automation',
-          description:
-            'Add VLC media player automation example script with support for YouTube streams and local video playback.',
-          link: 'https://github.com/mediar-ai/terminator/pull/35',
-        },
-        {
-          title: 'Homebrew Release for Screenpipe',
-          description:
-            'Published the Screenpipe tool to Homebrew with CI/CD integration.',
-          bounty: '$50 bounty',
-          link: 'https://github.com/mediar-ai/screenpipe/pull/623',
-        },
-      ],
-    },
-    {
-      company: 'Algora.io',
-      role: 'Bounty Hunter',
-      period: '2024 - Present',
-      description: 'Earned $1099+ in bounties by solving github issues.',
-      logo: 'algora.svg',
-      link: 'https://algora.io/Anshgrover23',
-      totalPRs: '33+',
-      totalBounties: '$1099+',
-      contributions: [
-        {
-          title: 'Multiple Bounty Completions',
-          description:
-            'Successfully completed various development challenges across different organizations, earning significant bounties for quality contributions.',
-          bounty: '$1099+ total earned',
-          link: 'https://algora.io/Anshgrover23',
-        },
-      ],
-    },
-  ];
+  // Helper function to clean up PR descriptions
+  const cleanDescription = (description: string): string => {
+    if (!description) return '';
 
-  const companyData = {
-    antiwork: {
-      name: 'antiwork',
-      logo: '🛠️',
-      contributions: experiences[0].contributions,
-    },
-    TSCircuit: {
-      name: 'TSCircuit',
-      logo: '🔌',
-      contributions: experiences[1].contributions,
-    },
-    'Mediar-AI': {
-      name: 'Mediar-AI',
-      logo: '🤖',
-      contributions: experiences[2].contributions,
-    },
-    'Algora.io': {
-      name: 'Algora.io',
-      logo: '💰',
-      contributions: experiences[3].contributions,
-    },
+    // Remove HTML img tags
+    let cleaned = description.replace(/<img[^>]*>/g, '');
+
+    // Remove markdown image syntax
+    cleaned = cleaned.replace(/!\[.*?\]\(.*?\)/g, '');
+
+    // Remove URLs
+    cleaned = cleaned.replace(/https?:\/\/[^\s]+/g, '');
+
+    // Remove excessive whitespace and newlines
+    cleaned = cleaned.replace(/\r\n|\r|\n/g, ' ');
+    cleaned = cleaned.replace(/\s+/g, ' ');
+
+    // Extract meaningful text from common patterns
+    const summaryMatch = cleaned.match(/### Summary:\s*([^#]*)/i);
+    if (summaryMatch) {
+      cleaned = summaryMatch[1].trim();
+    }
+
+    // Remove reference patterns like "ref: #123" or "Fixes #123"
+    cleaned = cleaned.replace(/\b(ref|fixes?|closes?|resolves?):\s*#\d+/gi, '');
+
+    // Remove AI usage sections
+    cleaned = cleaned.replace(/### AI USAGE:.*$/i, '');
+
+    // Clean up bullets and dashes
+    cleaned = cleaned.replace(/^[-•]\s*/gm, '');
+
+    // Trim and limit length
+    cleaned = cleaned.trim();
+    if (cleaned.length > 150) {
+      cleaned = cleaned.substring(0, 147) + '...';
+    }
+
+    return cleaned || 'Bug fix and improvements';
   };
+
+  // Ensure we have an array of contributions
+  const contributions: PR[] = Array.isArray(contributionsData)
+    ? contributionsData
+    : [];
+
+
+
+    // Helper function to calculate total bounties
+    const calculateTotalBounties = (
+      prs: PR[]
+    ): { total: string; count: number } => {
+      let totalAmount = 0;
+      let count = 0;
+
+      prs.forEach(pr => {
+        if (pr.bounty) {
+          count++;
+
+          // Handle different bounty formats: $250, $1K, $2.5K, $10k, etc.
+          const bountyStr = pr.bounty.replace(/\$/g, '').toLowerCase(); // Remove $ and make lowercase
+
+          if (bountyStr.includes('k')) {
+            // Handle K suffix (1k, 2.5k, etc.)
+            const numStr = bountyStr.replace('k', '');
+            const num = parseFloat(numStr);
+            if (!isNaN(num)) {
+              totalAmount += num * 1000; // Convert K to thousands
+            }
+          } else {
+            // Handle regular numbers with commas: 1,000, 250, etc.
+            const match = bountyStr.match(/([\d,]+(?:\.\d+)?)/);
+            if (match) {
+              const amount = parseInt(match[1].replace(/,/g, ''));
+              if (!isNaN(amount)) {
+                totalAmount += amount;
+              }
+            }
+          }
+        }
+      });
+
+      return {
+        total: totalAmount > 0 ? `$${totalAmount.toLocaleString()}` : '$0',
+        count,
+      };
+    };
+
+   
+
+  // Group contributions by company/org
+  const experiences: Record<string, ExpType> = contributions.reduce(
+    (acc: Record<string, ExpType>, pr: PR) => {
+      const company = pr.org;
+
+      if (!acc[company]) {
+        // Create better descriptions based on company
+        const getCompanyDescription = (org: string) => {
+          switch (org.toLowerCase()) {
+            case 'antiwork':
+              return 'Contributing to modern workplace solutions and productivity tools';
+            case 'tscircuit':
+              return 'Building electronic circuit design and simulation tools';
+            case 'mediarai':
+              return 'Developing AI-powered media and automation solutions';
+            default:
+              return `Open source contributions to ${org}`;
+          }
+        };
+
+        acc[company] = {
+          company,
+          role: 'Open Source Contributor',
+          period: '2024 - Present',
+          description: getCompanyDescription(company),
+          logo: `${company.toLowerCase()}.svg`,
+          link: `https://github.com/${company}`,
+          totalPRs: 0,
+          totalBounties: '$0',
+          bountyCount: 0,
+          contributions: [],
+        };
+      }
+
+      acc[company].contributions.push({
+        title: pr.title,
+        description: cleanDescription(pr.description),
+        link: pr.link,
+        ...(pr.bounty && { bounty: pr.bounty }),
+      });
+
+      acc[company].totalPRs += 1;
+      return acc;
+    },
+    {} as Record<string, ExpType>
+  );
+
+  // Calculate bounties for each company
+  Object.keys(experiences).forEach(company => {
+    const companyPRs = contributions.filter(pr => pr.org === company);
+    const bountyInfo = calculateTotalBounties(companyPRs);
+    experiences[company].totalBounties = bountyInfo.total;
+    experiences[company].bountyCount = bountyInfo.count;
+  });
+
+  const experienceArray = Object.values(experiences);
+
+  // Calculate overall stats
+  const overallStats = calculateTotalBounties(contributions);
+  const totalPRs = contributions.length;
+
+  // If no experiences, show a loading or empty state
+  if (experienceArray.length === 0) {
+    return (
+      <section className="mb-16">
+        <h2 className="text-3xl font-bold mb-8 text-white">
+          Cool places I've contributed to
+        </h2>
+        <div className="p-6 rounded-lg bg-gray-900/50 text-center">
+          <p className="text-gray-400">Loading contributions...</p>
+        </div>
+      </section>
+    );
+  }
+
+  const companyData: Record<string, CompanyData> = experienceArray.reduce(
+    (acc: Record<string, CompanyData>, exp: ExpType) => {
+      acc[exp.company] = {
+        name: exp.company,
+        logo: exp.logo,
+        contributions: exp.contributions,
+      };
+      return acc;
+    },
+    {} as Record<string, CompanyData>
+  );
 
   return (
     <section className="mb-16">
-      <h2 className="text-3xl font-bold mb-8 text-white">
-        Cool places I've contributed to
-      </h2>
+      <div className="flex items-center justify-between mb-8">
+        <h2 className="text-3xl font-bold text-white">
+          Cool places I've contributed to
+        </h2>
+
+        {/* Overall Stats */}
+        <div className="flex items-center gap-4 text-sm">
+          <div className="flex items-center gap-2 px-3 py-1 bg-blue-900/30 rounded-full">
+            <span className="text-blue-400">📊</span>
+            <span className="text-white">{totalPRs} PRs</span>
+          </div>
+          {overallStats.count > 0 && (
+            <div className="flex items-center gap-2 px-3 py-1 bg-green-900/30 rounded-full">
+              <span className="text-green-400">💰</span>
+              <span className="text-white">{overallStats.total} earned</span>
+            </div>
+          )}
+        </div>
+      </div>
+
       <div className="space-y-6">
-        {experiences.map((exp, index) => (
+        {experienceArray.map((exp, index) => (
           <div
             key={index}
-            className={`flex items-start gap-4 p-6 rounded-lg bg-gray-900/50 hover:bg-gray-900/70 transition-all duration-300 cursor-pointer relative ${exp.company === 'antiwork' ? 'border-2 border-purple-500 shadow-[0_0_16px_4px_rgba(168,85,247,0.5)]' : ''}`}
+            className={`flex items-start gap-4 p-6 rounded-lg bg-gray-900/50 hover:bg-gray-900/70 transition-all duration-300 cursor-pointer ${
+              exp.company === 'antiwork'
+                ? 'border-2 border-purple-500 shadow-[0_0_16px_4px_rgba(168,85,247,0.5)]'
+                : ''
+            }`}
             onClick={() => setSelectedCompany(exp.company)}
           >
             <div className="text-3xl">
-              {typeof exp.logo === 'string' && exp.logo.endsWith('.svg') ? (
-                <Image
-                  src={`/${exp.logo}`}
-                  alt={`${exp.company} logo`}
-                  className="rounded-full object-contain inline-block align-middle"
-                  height={32}
-                  width={32}
-                />
-              ) : (
-                exp.logo
-              )}
+              <Image
+                src={`/${exp.logo}`}
+                alt={`${exp.company} logo`}
+                className="rounded-full object-contain inline-block align-middle"
+                height={32}
+                width={32}
+                onError={e => {
+                  // Fallback to a default image or hide if logo fails to load
+                  const target = e.target as HTMLImageElement;
+                  target.style.display = 'none';
+                }}
+              />
             </div>
             <div className="flex-1">
               <div className="flex items-center justify-between mb-2">
@@ -241,91 +252,37 @@ export const Experience = () => {
                 <span className="text-gray-400 text-sm">{exp.period}</span>
               </div>
               <p className="text-purple-400 mb-2">{exp.role}</p>
-              <p className="text-gray-300 text-sm mb-3">{exp.description}</p>
-              <div className="flex flex-col items-start gap-4 mb-2">
+              <p className="text-gray-300 text-sm mb-3">{}exp.description</p>
+
+              <div className="flex flex-wrap items-start gap-4 mb-2">
                 <div className="flex items-center gap-2">
-                  <span className="text-green-400 font-semibold text-sm sm:text-sm">
+                  <span className="text-green-400 font-semibold text-sm">
                     PRs Merged:
                   </span>
-                  <span className="text-white text-sm sm:text-sm font-medium">
+                  <span className="text-white text-sm font-medium">
                     {exp.totalPRs}
                   </span>
                 </div>
+
                 <div className="flex items-center gap-2">
-                  <span className="text-yellow-400 font-semibold text-sm sm:text-sm">
+                  <span className="text-yellow-400 font-semibold text-sm">
                     Bounties Earned:
                   </span>
-                  <span className="text-white text-sm sm:text-sm font-medium">
+                  <span className="text-white text-sm font-medium">
                     {exp.totalBounties}
                   </span>
+                  {exp.bountyCount > 0 && (
+                    <span className="text-xs bg-yellow-900/30 text-yellow-300 px-2 py-1 rounded-full">
+                      {exp.bountyCount} bounty
+                      {exp.bountyCount > 1 ? 'ies' : 'y'}
+                    </span>
+                  )}
                 </div>
               </div>
+
               <p className="text-blue-400 text-sm mt-2">
                 Click to view featured contributions →
               </p>
-              {/* Language badges bottom right (responsive) */}
-              {exp.company === 'antiwork' && (
-                <div className="flex flex-wrap gap-2 mt-4 md:mt-0 md:absolute md:right-6 md:bottom-4 md:flex-row items-center md:items-end justify-start">
-                  <span className="flex items-center gap-1 px-3 py-1 rounded-full backdrop-blur-md bg-white/10 border border-blue-400/30 shadow-lg text-blue-200 text-xs font-semibold transition-transform transform hover:scale-105 hover:bg-blue-700/30">
-                    <Image
-                      src="/svg-icons/typescript.svg"
-                      alt="typescript-svg"
-                      width={15}
-                      height={15}
-                    />
-                    TypeScript
-                  </span>
-                  <span className="flex items-center gap-1 px-3 py-1 rounded-full backdrop-blur-md bg-white/10 border border-zinc-400/30 shadow-lg text-zinc-200 text-xs font-semibold transition-transform transform hover:scale-105 hover:bg-zinc-700/30">
-                    <Image
-                      src="/svg-icons/nextjs.svg"
-                      alt="nextjs-svg"
-                      width={15}
-                      height={15}
-                      className="invert"
-                    />
-                    Next.js
-                  </span>
-                  <span className="flex items-center gap-1 px-3 py-1 rounded-full backdrop-blur-md bg-white/10 border border-rose-400/30 shadow-lg text-rose-200 text-xs font-semibold transition-transform transform hover:scale-105 hover:bg-rose-700/30">
-                    <Image src="/svg-icons/ruby.svg" alt="ruby-svg" width={15} height={15}/>
-                    Ruby
-                  </span>
-                </div>
-              )}
-              {exp.company === 'TSCircuit' && (
-                <div className="flex flex-wrap gap-2 mt-4 md:mt-0 md:absolute md:right-6 md:bottom-4 md:flex-row items-center md:items-end justify-start">
-                  <span className="flex items-center gap-1 px-3 py-1 rounded-full backdrop-blur-md bg-white/10 border border-blue-400/30 shadow-lg text-blue-200 text-xs font-semibold transition-transform transform hover:scale-105 hover:bg-blue-700/30">
-                    <Image
-                      src="/svg-icons/typescript.svg"
-                      alt="typescript-svg"
-                      width={15}
-                      height={15}
-                    />
-                    TypeScript
-                  </span>
-                  <span className="flex items-center gap-1 px-3 py-1 rounded-full backdrop-blur-md bg-white/10 border border-cyan-400/30 shadow-lg text-cyan-200 text-xs font-semibold transition-transform transform hover:scale-105 hover:bg-cyan-700/30">
-                    <Image
-                      src="/svg-icons/reactjs.svg"
-                      alt="reactjs-svg"
-                      width={15}
-                      height={15}
-                    />
-                    React.js
-                  </span>
-                </div>
-              )}
-              {exp.company === 'Mediar-AI' && (
-                <div className="flex flex-wrap gap-2 mt-4 md:mt-0 md:absolute md:right-6 md:bottom-4 md:flex-row items-center md:items-end justify-start">
-                  <span className="flex items-center gap-1 px-3 py-1 rounded-full backdrop-blur-md bg-white/10 border border-orange-400/30 shadow-lg text-orange-200 text-xs font-semibold transition-transform transform hover:scale-105 hover:bg-orange-700/30">
-                    <Image
-                      src="/svg-icons/rust.svg"
-                      alt="rust-svg"
-                      width={15}
-                      height={15}
-                    />
-                    Rust
-                  </span>
-                </div>
-              )}
             </div>
           </div>
         ))}
@@ -335,7 +292,7 @@ export const Experience = () => {
         <CompanyModal
           isOpen={!!selectedCompany}
           onClose={() => setSelectedCompany(null)}
-          company={companyData[selectedCompany as keyof typeof companyData]}
+          company={companyData[selectedCompany]}
         />
       )}
     </section>
