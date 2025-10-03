@@ -75,7 +75,37 @@ interface PR {
   createdAt: string;
   author: string;
   number: number;
-  bounty?: string; // "$6000"
+  bounty?: string;
+}
+
+interface CacheData {
+  lastFetched: string;
+  prs: PR[];
+}
+
+const CACHE_FILE = path.join(process.cwd(), 'src/data/prCache.json');
+const CACHE_DURATION =  24 * 60 * 60 * 1000;
+
+function loadCache(): CacheData | null {
+  try {
+    if (!fs.existsSync(CACHE_FILE)) return null;
+    const cache = JSON.parse(fs.readFileSync(CACHE_FILE, 'utf-8'));
+    return cache;
+  } catch {
+    return null;
+  }
+}
+function saveCache(data: PR[]): void {
+  const cacheData: CacheData = {
+    lastFetched: new Date().toISOString(),
+    prs: data,
+  };
+  fs.writeFileSync(CACHE_FILE, JSON.stringify(cacheData, null, 2), 'utf-8');
+}
+function isCacheValid(cache: CacheData): boolean {
+  const lastFetched = new Date(cache.lastFetched).getTime();
+  const now = Date.now();
+  return now - lastFetched < CACHE_DURATION;
 }
 
 function getHeaders() {
@@ -120,7 +150,6 @@ function extractBountyFromText(
       return label.trim();
     }
   }
-
   // 2. Look for rewarded bounty labels (tscircuit style)
   for (const label of labels) {
     if (label.includes('💰 Rewarded') || label.includes('Rewarded')) {
@@ -154,14 +183,12 @@ async function detectBounty(
 ): Promise<string | undefined> {
   console.log(`🔍 Checking bounty for PR #${pr.number}: ${pr.title}`);
 
-  // 1) From PR body
   const bountyFromPR = extractBountyFromText([pr.body || '']);
   if (bountyFromPR) {
     console.log(`💰 Found bounty in PR body: ${bountyFromPR}`);
     return bountyFromPR;
   }
 
-  // 2) From linked issue(s)
   const refs = parseIssueRefs(pr.body, org, repo);
   console.log(`🔗 Found ${refs.length} issue references:`, refs);
 
@@ -189,8 +216,6 @@ async function detectBounty(
     } else {
       console.log(`❌ Could not fetch issue #${ref.number}`);
     }
-
-    // Small delay to be nice to the API
     await new Promise(r => setTimeout(r, 80));
   }
 
@@ -198,21 +223,39 @@ async function detectBounty(
   return undefined;
 }
 
-async function fetchMergedPRsForRepo(org: string, repo: string): Promise<PR[]> {
+async function fetchMergedPRsForRepo(
+  org: string,
+  repo: string,
+  since?: string
+): Promise<PR[]> {
   const results: PR[] = [];
   let page = 1;
 
   while (true) {
     const url = `https://api.github.com/repos/${org}/${repo}/pulls`;
+    const params: {
+      state: string;
+      per_page: number;
+      page: number;
+      sort: string;
+      direction: string;
+      since?: string;
+    } = {
+      state: 'closed',
+      per_page: 100,
+      page,
+      sort: 'updated',
+      direction: 'desc',
+    };
+
+    // Only fetch PRs updated since last cache
+    if (since) {
+      params.since = since;
+    }
+
     const { data } = await axios.get<GitHubPR[]>(url, {
       headers: getHeaders(),
-      params: {
-        state: 'closed',
-        per_page: 100,
-        page,
-        sort: 'updated',
-        direction: 'desc',
-      },
+      params,
     });
 
     if (!Array.isArray(data) || data.length === 0) break;
@@ -221,30 +264,34 @@ async function fetchMergedPRsForRepo(org: string, repo: string): Promise<PR[]> {
       pr => pr.merged_at && pr.user.login === YOUR_USERNAME
     );
 
-    for (const pr of mergedByUser) {
-      const bounty = await detectBounty(org, repo, pr);
-
-      if (bounty) {
-        console.log(`💰 Adding PR with bounty: ${pr.title} (${bounty})`);
-        results.push({
-          org,
-          repo,
-          title: pr.title,
-          description: pr.body || '',
-          link: pr.html_url,
-          mergedAt: pr.merged_at as string,
-          createdAt: pr.created_at,
-          author: pr.user.login,
-          number: pr.number,
-          bounty, // This is the key - only include bounty field when it exists
-        });
-      } else {
-        console.log(`⏭️ Skipping PR without bounty: ${pr.title}`);
-      }
-
-      // Pace issue lookups
-      await new Promise(r => setTimeout(r, 80));
+    // If using since parameter and no new PRs from this user, stop fetching this repo
+    if (since && mergedByUser.length === 0) {
+      console.log(`⏭️ No new PRs since ${since}, skipping remaining pages`);
+      break;
     }
+
+      for (const pr of mergedByUser) {
+        const bounty = await detectBounty(org, repo, pr);
+
+        if (bounty) {
+          console.log(`💰 Adding PR with bounty: ${pr.title} (${bounty})`);
+          results.push({
+            org,
+            repo,
+            title: pr.title,
+            description: pr.body || '',
+            link: pr.html_url,
+            mergedAt: pr.merged_at as string,
+            createdAt: pr.created_at,
+            author: pr.user.login,
+            number: pr.number,
+            bounty,
+          });
+        } else {
+          console.log(`⏭️ Skipping PR without bounty: ${pr.title}`);
+        }
+        await new Promise(r => setTimeout(r, 80));
+      }
 
     page += 1;
     // Pace page requests
@@ -255,7 +302,23 @@ async function fetchMergedPRsForRepo(org: string, repo: string): Promise<PR[]> {
 }
 
 async function fetchYourPRs(): Promise<PR[]> {
+  // Check cache first
+  const cache = loadCache();
+
+  if (cache && isCacheValid(cache)) {
+    console.log(
+      `📋 Using cached data from ${new Date(cache.lastFetched).toLocaleString()}`
+    );
+    console.log(`🎯 Found ${cache.prs.length} cached PRs with bounties`);
+    return cache.prs;
+  }
+
+  console.log(
+    `🔄 Cache ${cache ? 'expired' : 'not found'}, fetching fresh data...`
+  );
+
   const all: PR[] = [];
+  const since = cache?.lastFetched; // Only fetch PRs updated since last cache
 
   console.log(`🎯 Fetching merged PRs for ${YOUR_USERNAME}`);
   if (!GITHUB_TOKEN) {
@@ -263,17 +326,18 @@ async function fetchYourPRs(): Promise<PR[]> {
       'ℹ️ No GITHUB_TOKEN set. Using unauthenticated requests (rate limit: 60/hr).'
     );
   }
-
   for (const org of Object.keys(TARGET_ORGS)) {
     const repos = TARGET_ORGS[org];
     console.log(`\n🌐 Organization: ${org} (${repos.join(', ')})`);
 
     for (const repo of repos) {
       try {
-        console.log(`🔍 ${org}/${repo}`);
-        const prs = await fetchMergedPRsForRepo(org, repo);
+        const fetchType = since ? ' (incremental)' : ' (full)';
+        console.log(`🔍 ${org}/${repo}${fetchType}`);
+
+        const prs = await fetchMergedPRsForRepo(org, repo, since);
         console.log(
-          `✅ Found ${prs.length} merged PRs by ${YOUR_USERNAME} in ${repo}`
+          `✅ Found ${prs.length} new merged PRs by ${YOUR_USERNAME} in ${repo}`
         );
         all.push(...prs);
       } catch (e: unknown) {
@@ -286,10 +350,33 @@ async function fetchYourPRs(): Promise<PR[]> {
     }
   }
 
-  all.sort(
-    (a, b) => new Date(b.mergedAt).getTime() - new Date(a.mergedAt).getTime()
-  );
-  return all;
+   let finalData = all;
+   if (cache && since) {
+     console.log(
+       `🔄 Merging ${all.length} new PRs with ${cache.prs.length} cached PRs`
+     );
+
+     // Remove duplicates and merge
+     const existingPRs = cache.prs.filter(
+       cachedPR =>
+         !all.some(
+           newPR =>
+             newPR.org === cachedPR.org &&
+             newPR.repo === cachedPR.repo &&
+             newPR.number === cachedPR.number
+         )
+     );
+     finalData = [...existingPRs, ...all];
+   }
+finalData.sort(
+  (a, b) => new Date(b.mergedAt).getTime() - new Date(a.mergedAt).getTime()
+);
+
+// Save to cache
+saveCache(finalData);
+console.log(`💾 Cached ${finalData.length} total PRs`);
+
+return finalData;
 }
 
 async function savePRs() {
