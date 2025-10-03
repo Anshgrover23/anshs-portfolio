@@ -1,4 +1,4 @@
-"use client"
+'use client';
 import {
   Dialog,
   DialogContent,
@@ -35,7 +35,11 @@ export const CompanyModal = ({
       <DialogContent className="max-w-2xl bg-gray-900 border-gray-700 text-white">
         <DialogHeader>
           <DialogTitle className="flex items-center gap-3 text-2xl">
-            <span className="text-3xl">{company.logo}</span>
+            <img
+              src={`/${company.logo}`}
+              alt={`${company.name} logo`}
+              className="w-8 h-8 object-contain"
+            />
             {company.name} - Featured Contributions
           </DialogTitle>
         </DialogHeader>

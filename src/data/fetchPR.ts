@@ -2,6 +2,7 @@ import 'dotenv/config';
 import axios from 'axios';
 import fs from 'fs';
 import path from 'path';
+import { PR } from '@/types/PR';
 
 const GITHUB_TOKEN = process.env.GITHUB_TOKEN || '';
 const YOUR_USERNAME = 'Anshgrover23';
@@ -65,18 +66,7 @@ interface GitHubIssue {
   labels: Array<{ name: string }>;
 }
 
-interface PR {
-  org: string;
-  repo: string;
-  title: string;
-  description: string;
-  link: string;
-  mergedAt: string;
-  createdAt: string;
-  author: string;
-  number: number;
-  bounty?: string;
-}
+
 
 interface CacheData {
   lastFetched: string;
