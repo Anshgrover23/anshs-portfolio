@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: write 
+  contents: write
 
 jobs:
   update:
@@ -28,7 +28,7 @@ jobs:
       - name: Fetch PRs
         run: npx tsx src/data/fetchPR.ts
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GH_PAT }}
 
       - name: Commit & Push changes
         run: |

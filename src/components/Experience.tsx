@@ -87,7 +87,7 @@ export const Experience = () => {
             // Handle regular numbers with commas: 1,000, 250, etc.
             const match = bountyStr.match(/([\d,]+(?:\.\d+)?)/);
             if (match) {
-              const amount = parseInt(match[1].replace(/,/g, ''));
+              const amount = parseFloat(match[1].replace(/,/g, ''));
               if (!isNaN(amount)) {
                 totalAmount += amount;
               }
@@ -117,7 +117,7 @@ export const Experience = () => {
               return 'Contributing to modern workplace solutions and productivity tools';
             case 'tscircuit':
               return 'Building electronic circuit design and simulation tools';
-            case 'mediarai':
+            case 'mediar-ai':
               return 'Developing AI-powered media and automation solutions';
             default:
               return `Open source contributions to ${org}`;
@@ -274,7 +274,7 @@ export const Experience = () => {
                   {exp.bountyCount > 0 && (
                     <span className="text-xs bg-yellow-900/30 text-yellow-300 px-2 py-1 rounded-full">
                       {exp.bountyCount} bounty
-                      {exp.bountyCount > 1 ? 'ies' : 'y'}
+                      {exp.bountyCount > 1 ? 'ies' : ''}
                     </span>
                   )}
                 </div>
