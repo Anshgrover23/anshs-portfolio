@@ -145,3 +145,9 @@
 .read-the-docs {
   color: #888;
 }
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-marquee {
+    animation: none;
+  }
+}

@@ -1,92 +1,30 @@
 "use client"
+
+const skills = [
+  { icon: '●', color: 'text-blue-400', name: 'JavaScript' },
+  { icon: '■', color: 'text-blue-500', name: 'TypeScript' },
+  { icon: '◆', color: 'text-indigo-400', name: 'React.js' },
+  { icon: '▲', color: 'text-sky-400', name: 'Next.js' },
+  { icon: '●', color: 'text-pink-400', name: 'Express.js' },
+  { icon: '■', color: 'text-cyan-300', name: 'PostgreSQL' },
+  { icon: '●', color: 'text-green-400', name: 'MongoDB' },
+  { icon: '■', color: 'text-orange-400', name: 'Prisma' },
+  { icon: '●', color: 'text-blue-300', name: 'REST APIs' },
+  { icon: '■', color: 'text-red-400', name: 'UI/UX' },
+];
+
 export const About = () => {
   return (
     <section id="about" className="mb-16">
       <h2 className="text-3xl font-bold mb-8 text-white">🧐 About Me</h2>
-      <div className="overflow-hidden py-2 mb-8">
-        <div className="flex animate-marquee whitespace-nowrap space-x-8">
-       
-          <div className="flex items-center space-x-2">
-            <span className="text-blue-400">●</span>
-            <span className="text-gray-200 font-medium">JavaScript</span>
-          </div>
-          <div className="flex items-center space-x-2">
-            <span className="text-blue-500">■</span>
-            <span className="text-gray-200 font-medium">TypeScript</span>
-          </div>
-          <div className="flex items-center space-x-2">
-            <span className="text-indigo-400">◆</span>
-            <span className="text-gray-200 font-medium">React.js</span>
-          </div>
-          <div className="flex items-center space-x-2">
-            <span className="text-sky-400">▲</span>
-            <span className="text-gray-200 font-medium">Next.js</span>
-          </div>
-          <div className="flex items-center space-x-2">
-            <span className="text-pink-400">●</span>
-            <span className="text-gray-200 font-medium">Express.js</span>
-          </div>
-          <div className="flex items-center space-x-2">
-            <span className="text-cyan-300">■</span>
-            <span className="text-gray-200 font-medium">PostgreSQL</span>
-          </div>
-          <div className="flex items-center space-x-2">
-            <span className="text-green-400">●</span>
-            <span className="text-gray-200 font-medium">MongoDB</span>
-          </div>
-          <div className="flex items-center space-x-2">
-            <span className="text-orange-400">■</span>
-            <span className="text-gray-200 font-medium">Prisma</span>
-          </div>
-          <div className="flex items-center space-x-2">
-            <span className="text-blue-300">●</span>
-            <span className="text-gray-200 font-medium">REST APIs</span>
-          </div>
-          <div className="flex items-center space-x-2">
-            <span className="text-red-400">■</span>
-            <span className="text-gray-200 font-medium">UI/UX</span>
-          </div>
-        
-          <div className="flex items-center space-x-2">
-            <span className="text-blue-400">●</span>
-            <span className="text-gray-200 font-medium">JavaScript</span>
-          </div>
-          <div className="flex items-center space-x-2">
-            <span className="text-blue-500">■</span>
-            <span className="text-gray-200 font-medium">TypeScript</span>
-          </div>
-          <div className="flex items-center space-x-2">
-            <span className="text-indigo-400">◆</span>
-            <span className="text-gray-200 font-medium">React.js</span>
-          </div>
-          <div className="flex items-center space-x-2">
-            <span className="text-sky-400">▲</span>
-            <span className="text-gray-200 font-medium">Next.js</span>
-          </div>
-          <div className="flex items-center space-x-2">
-            <span className="text-pink-400">●</span>
-            <span className="text-gray-200 font-medium">Express.js</span>
-          </div>
-          <div className="flex items-center space-x-2">
-            <span className="text-cyan-300">■</span>
-            <span className="text-gray-200 font-medium">PostgreSQL</span>
-          </div>
-          <div className="flex items-center space-x-2">
-            <span className="text-green-400">●</span>
-            <span className="text-gray-200 font-medium">MongoDB</span>
-          </div>
-          <div className="flex items-center space-x-2">
-            <span className="text-orange-400">■</span>
-            <span className="text-gray-200 font-medium">Prisma</span>
-          </div>
-          <div className="flex items-center space-x-2">
-            <span className="text-blue-300">●</span>
-            <span className="text-gray-200 font-medium">REST APIs</span>
-          </div>
-          <div className="flex items-center space-x-2">
-            <span className="text-red-400">■</span>
-            <span className="text-gray-200 font-medium">UI/UX</span>
-          </div>
+      <div className="overflow-hidden py-2 mb-8" role="region" aria-label="Technical skills">
+        <div className="flex animate-marquee whitespace-nowrap space-x-8 hover:[animation-play-state:paused] focus-within:[animation-play-state:paused]">
+          {[...skills, ...skills].map((skill, index) => (
+            <div key={`${skill.name}-${index}`} className="flex items-center space-x-2">
+              <span className={skill.color}>{skill.icon}</span>
+              <span className="text-gray-200 font-medium">{skill.name}</span>
+            </div>
+          ))}
         </div>
       </div>
       <div className="space-y-6">
