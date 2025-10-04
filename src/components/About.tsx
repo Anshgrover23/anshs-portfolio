@@ -3,6 +3,92 @@ export const About = () => {
   return (
     <section id="about" className="mb-16">
       <h2 className="text-3xl font-bold mb-8 text-white">🧐 About Me</h2>
+      <div className="overflow-hidden py-2 mb-8">
+        <div className="flex animate-marquee whitespace-nowrap space-x-8">
+       
+          <div className="flex items-center space-x-2">
+            <span className="text-blue-400">●</span>
+            <span className="text-gray-200 font-medium">JavaScript</span>
+          </div>
+          <div className="flex items-center space-x-2">
+            <span className="text-blue-500">■</span>
+            <span className="text-gray-200 font-medium">TypeScript</span>
+          </div>
+          <div className="flex items-center space-x-2">
+            <span className="text-indigo-400">◆</span>
+            <span className="text-gray-200 font-medium">React.js</span>
+          </div>
+          <div className="flex items-center space-x-2">
+            <span className="text-sky-400">▲</span>
+            <span className="text-gray-200 font-medium">Next.js</span>
+          </div>
+          <div className="flex items-center space-x-2">
+            <span className="text-pink-400">●</span>
+            <span className="text-gray-200 font-medium">Express.js</span>
+          </div>
+          <div className="flex items-center space-x-2">
+            <span className="text-cyan-300">■</span>
+            <span className="text-gray-200 font-medium">PostgreSQL</span>
+          </div>
+          <div className="flex items-center space-x-2">
+            <span className="text-green-400">●</span>
+            <span className="text-gray-200 font-medium">MongoDB</span>
+          </div>
+          <div className="flex items-center space-x-2">
+            <span className="text-orange-400">■</span>
+            <span className="text-gray-200 font-medium">Prisma</span>
+          </div>
+          <div className="flex items-center space-x-2">
+            <span className="text-blue-300">●</span>
+            <span className="text-gray-200 font-medium">REST APIs</span>
+          </div>
+          <div className="flex items-center space-x-2">
+            <span className="text-red-400">■</span>
+            <span className="text-gray-200 font-medium">UI/UX</span>
+          </div>
+        
+          <div className="flex items-center space-x-2">
+            <span className="text-blue-400">●</span>
+            <span className="text-gray-200 font-medium">JavaScript</span>
+          </div>
+          <div className="flex items-center space-x-2">
+            <span className="text-blue-500">■</span>
+            <span className="text-gray-200 font-medium">TypeScript</span>
+          </div>
+          <div className="flex items-center space-x-2">
+            <span className="text-indigo-400">◆</span>
+            <span className="text-gray-200 font-medium">React.js</span>
+          </div>
+          <div className="flex items-center space-x-2">
+            <span className="text-sky-400">▲</span>
+            <span className="text-gray-200 font-medium">Next.js</span>
+          </div>
+          <div className="flex items-center space-x-2">
+            <span className="text-pink-400">●</span>
+            <span className="text-gray-200 font-medium">Express.js</span>
+          </div>
+          <div className="flex items-center space-x-2">
+            <span className="text-cyan-300">■</span>
+            <span className="text-gray-200 font-medium">PostgreSQL</span>
+          </div>
+          <div className="flex items-center space-x-2">
+            <span className="text-green-400">●</span>
+            <span className="text-gray-200 font-medium">MongoDB</span>
+          </div>
+          <div className="flex items-center space-x-2">
+            <span className="text-orange-400">■</span>
+            <span className="text-gray-200 font-medium">Prisma</span>
+          </div>
+          <div className="flex items-center space-x-2">
+            <span className="text-blue-300">●</span>
+            <span className="text-gray-200 font-medium">REST APIs</span>
+          </div>
+          <div className="flex items-center space-x-2">
+            <span className="text-red-400">■</span>
+            <span className="text-gray-200 font-medium">UI/UX</span>
+          </div>
+        </div>
+      </div>
       <div className="space-y-6">
         <div className="text-gray-300 leading-relaxed">
           <p>
