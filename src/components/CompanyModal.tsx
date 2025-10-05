@@ -30,8 +30,12 @@ export const CompanyModal = ({
   onClose,
   company,
 }: CompanyModalProps) => {
+  const handleOpenChange = (open: boolean) => {
+    if (!open) onClose();
+  };
+
   return (
-    <Dialog open={isOpen} onOpenChange={onClose}>
+    <Dialog open={isOpen} onOpenChange={handleOpenChange}>
       <DialogContent className="max-w-2xl bg-gray-900 border-gray-700 text-white">
         <DialogHeader>
           <DialogTitle className="flex items-center gap-3 text-2xl">

@@ -13,7 +13,9 @@ export const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({ content }) =
     let codeBlockContent: string[] = [];
     let codeBlockLang = '';
 
-    lines.forEach((line, index) => {
+    for (let index = 0; index < lines.length; index++) {
+      const line = lines[index];
+
       if (line.startsWith('```')) {
         if (!inCodeBlock) {
           inCodeBlock = true;
@@ -39,7 +41,7 @@ export const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({ content }) =
 
       if (inCodeBlock) {
         codeBlockContent.push(line);
-        return;
+        continue;
       }
 
       if (line.startsWith('# ')) {
@@ -61,13 +63,28 @@ export const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({ content }) =
           </h3>
         );
       } else if (line.startsWith('- ')) {
-        const content = line.slice(2);
-        const formatted = formatInlineMarkdown(content);
+        // Collect consecutive list items into a single <ul>
+        const items: React.ReactNode[] = [];
+        let listIndex = index;
+        while (listIndex < lines.length && lines[listIndex].startsWith('- ')) {
+          const content = lines[listIndex].slice(2);
+          const formatted = formatInlineMarkdown(content);
+          items.push(
+            <li key={`li-${listIndex}`} className="ml-6 mb-2 text-gray-300 list-disc">
+              {formatted}
+            </li>
+          );
+          listIndex++;
+        }
+
         elements.push(
-          <li key={index} className="ml-6 mb-2 text-gray-300 list-disc">
-            {formatted}
-          </li>
+          <ul key={`ul-${index}`} className="mb-4 pl-6">
+            {items}
+          </ul>
         );
+
+        // advance the outer loop index to skip the items we already consumed
+        index = listIndex - 1;
       } else if (line.trim() !== '') {
         const formatted = formatInlineMarkdown(line);
         elements.push(
@@ -78,7 +95,7 @@ export const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({ content }) =
       } else {
         elements.push(<div key={index} className="h-2" />);
       }
-    });
+  }
 
     if (inCodeBlock) {
       elements.push(
