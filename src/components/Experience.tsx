@@ -16,7 +16,7 @@ export const Experience = () => {
       logo: 'antiwork.svg',
       link: 'https://github.com/antiwork/helper',
       totalPRs: '9+',
-      totalBounties: '$6000 (Flexile)',
+      totalBounties: '$40,000 (Flexile)',
       contributions: [
         {
           title: 'refactor: rename mailboxId to unused_mailboxId',
@@ -24,7 +24,7 @@ export const Experience = () => {
             'Renamed mailboxId to unused_mailboxId for clarity and future-proofing.',
           link: 'https://github.com/antiwork/helper/pull/706',
           bounty:
-            '$6000 bounty via Flexile(their own contractor payment platform)',
+            '$40,000 bounty via Flexile(their own contractor payment platform)',
         },
         {
           title:

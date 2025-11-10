@@ -4,22 +4,14 @@ import { Badge } from '@/components/ui/badge';
 import Image from 'next/image';
 import {
   BarChart3,
-  Beer,
   Database,
-  Drama,
   FlaskConical,
-  Laptop,
   Link,
   MonitorSmartphone,
-  Package,
-  Palette,
   RefreshCw,
   Route,
   ServerCog,
   Shield,
-  Ship,
-  Workflow,
-  Zap,
   type LucideIcon,
 } from 'lucide-react';
 
@@ -45,44 +37,147 @@ export const Skills = () => {
       icon: MonitorSmartphone,
       skills: [
         {
-          name: 'React.js',
-          icon: { type: 'svg', src: '/svg-icons/reactjs.svg' },
-        },
-        {
           name: 'Next.js',
-          icon: { type: 'svg', src: '/svg-icons/nextjs.svg' },
+          icon: {
+            type: 'svg',
+            src: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nextjs/nextjs-original.svg',
+          },
         },
         {
-          name: 'TypeScript',
-          icon: { type: 'svg', src: '/svg-icons/typescript.svg' },
+          name: 'JavaScript',
+          icon: {
+            type: 'svg',
+            src: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg',
+          },
         },
-        { name: 'TailwindCSS', icon: { type: 'lucide', icon: Palette } },
-        { name: 'Vite', icon: { type: 'lucide', icon: Zap } },
-        { name: 'JavaScript', icon: { type: 'lucide', icon: Laptop } },
+        {
+          name: 'React.js',
+          icon: {
+            type: 'svg',
+            src: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/react/react-original.svg',
+          },
+        },
+        {
+          name: 'TailwindCSS',
+          icon: {
+            type: 'svg',
+            src: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/tailwindcss/tailwindcss-original.svg',
+          },
+        },
       ],
     },
     {
       title: 'Backend Development',
       icon: ServerCog,
       skills: [
-        { name: 'Node.js', icon: { type: 'lucide', icon: Package } },
+        {
+          name: 'TypeScript',
+          icon: {
+            type: 'svg',
+            src: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/typescript/typescript-original.svg',
+          },
+        },
+        {
+          name: 'Ruby',
+          icon: {
+            type: 'svg',
+            src: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/ruby/ruby-original.svg',
+          },
+        },
+        {
+          name: 'Rust',
+          icon: {
+            type: 'svg',
+            src: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/rust/rust-original.svg',
+          },
+        },
+        {
+          name: 'Node.js',
+          icon: {
+            type: 'svg',
+            src: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nodejs/nodejs-original.svg',
+          },
+        },
         { name: 'Express.js', icon: { type: 'lucide', icon: Route } },
-        { name: 'Rust', icon: { type: 'svg', src: '/svg-icons/rust.svg' } },
-        { name: 'Ruby', icon: { type: 'svg', src: '/svg-icons/ruby.svg' } },
-        { name: 'PostgreSQL', icon: { type: 'lucide', icon: Database } },
+        {
+          name: 'tRPC',
+          icon: {
+            type: 'svg',
+            src: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/trpc/trpc-original.svg',
+          },
+        },
+        { name: 'Zod', icon: { type: 'lucide', icon: Shield } },
         { name: 'REST APIs', icon: { type: 'lucide', icon: Link } },
-        { name: 'JWT Auth', icon: { type: 'lucide', icon: Shield } },
+        {
+          name: 'GraphQL API',
+          icon: {
+            type: 'svg',
+            src: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/graphql/graphql-plain.svg',
+          },
+        },
+      ],
+    },
+    {
+      title: 'Databases & ORMs',
+      icon: Database,
+      skills: [
+        {
+          name: 'PostgreSQL',
+          icon: {
+            type: 'svg',
+            src: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/postgresql/postgresql-original.svg',
+          },
+        },
+        {
+          name: 'MongoDB',
+          icon: {
+            type: 'svg',
+            src: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mongodb/mongodb-original.svg',
+          },
+        },
+        { name: 'Drizzle ORM', icon: { type: 'lucide', icon: Database } },
+        {
+          name: 'Prisma ORM',
+          icon: {
+            type: 'svg',
+            src: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/prisma/prisma-original.svg',
+          },
+        },
       ],
     },
     {
       title: 'Testing & DevOps',
       icon: FlaskConical,
       skills: [
-        { name: 'Playwright', icon: { type: 'lucide', icon: Drama } },
+        {
+          name: 'Playwright',
+          icon: {
+            type: 'svg',
+            src: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/playwright/playwright-original.svg',
+          },
+        },
         { name: 'E2E Testing', icon: { type: 'lucide', icon: RefreshCw } },
-        { name: 'Docker', icon: { type: 'lucide', icon: Ship } },
-        { name: 'GitHub Actions', icon: { type: 'lucide', icon: Workflow } },
-        { name: 'Homebrew', icon: { type: 'lucide', icon: Beer } },
+        {
+          name: 'Docker',
+          icon: {
+            type: 'svg',
+            src: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/docker/docker-original.svg',
+          },
+        },
+        {
+          name: 'GitHub Actions',
+          icon: {
+            type: 'svg',
+            src: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/githubactions/githubactions-original.svg',
+          },
+        },
+        {
+          name: 'Homebrew',
+          icon: {
+            type: 'svg',
+            src: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/homebrew/homebrew-original.svg',
+          },
+        },
       ],
     },
   ];
@@ -116,7 +211,7 @@ export const Skills = () => {
                         alt={`${skill.name}-svg`}
                         width={20}
                         height={20}
-                        className={`${skill.name === 'Next.js' && 'invert'} ${skill.name === 'Rust' && 'w-4'}`}
+                        className={`${skill.name === 'Next.js' ? 'invert' : ''}`}
                       />
                     ) : (
                       <skill.icon.icon className="h-4 w-4" />

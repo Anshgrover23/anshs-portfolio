@@ -17,7 +17,8 @@ export const About = () => {
               full-stack developer focusing on TypeScript
             </strong>
             , testing infrastructure, and developer experience — currently
-            shipping across React, Rust, and Ruby.
+            shipping across{' '}
+            <strong className="text-white">Next.js, Rust, and Ruby</strong>.
           </p>
         </div>
 
@@ -28,11 +29,12 @@ export const About = () => {
           </h4>
           <ul className="text-gray-300 space-y-2">
             <li>
-              • <strong className="text-white">215+ PRs</strong> merged across
+              • <strong className="text-white">260+ PRs</strong> merged across
               open-source projects{' '}
             </li>
             <li>
-              • <strong className="text-white">$6000 bounty</strong> awarded by{' '}
+              • <strong className="text-white">$40,000 bounty</strong> awarded
+              by{' '}
               <a
                 href="https://flexile.com/"
                 className="underline hover:text-accent transition-colors"
@@ -43,7 +45,7 @@ export const About = () => {
               <strong className="text-white">antiwork</strong>
             </li>
             <li>
-              • Earned <strong className="text-white">$1099 bounty</strong> via{' '}
+              • Earned <strong className="text-white">$1200+ bounty</strong> via{' '}
               <a
                 href="https://algora.io/Anshgrover23/profile"
                 className="underline hover:text-accent transition-colors"
@@ -56,8 +58,8 @@ export const About = () => {
             <li>
               •{' '}
               <span className="text-accent font-bold">
-                Receiving{' '}
-                <strong className="text-white">$200+ per month</strong> in{' '}
+                Previously received{' '}
+                <strong className="text-white">$1200+ overall</strong> in{' '}
                 <a
                   href="https://github.com/sponsors/Anshgrover23"
                   className="underline hover:text-accent transition-colors"
