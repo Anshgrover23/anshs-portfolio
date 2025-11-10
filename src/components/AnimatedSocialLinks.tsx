@@ -12,39 +12,45 @@ import {
 export const AnimatedSocialLinks = () => {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
-  const links = [
+  type IconComponent = React.ComponentType<{ className?: string }>;
+  const links: {
+    icon: IconComponent;
+    href: string;
+    label: string;
+    color: string;
+  }[] = [
     {
-      icon: Github,
+      icon: Github as IconComponent,
       href: 'https://github.com/Anshgrover23',
       label: 'GitHub',
       color: 'hover:bg-gray-700',
     },
     {
-      icon: Linkedin,
+      icon: Linkedin as IconComponent,
       href: 'https://www.linkedin.com/in/anshgrover23/',
       label: 'LinkedIn',
       color: 'hover:bg-sky-900',
     },
     {
-      icon: FaXTwitter,
+      icon: FaXTwitter as IconComponent,
       href: 'https://twitter.com/Anshgrover23',
       label: 'Twitter',
       color: 'hover:bg-blue-900',
     },
     {
-      icon: Mail,
+      icon: Mail as IconComponent,
       href: 'mailto:ag5989670@gmail.com',
       label: 'Email',
       color: 'hover:bg-green-600',
     },
     {
-      icon: ExternalLink,
+      icon: ExternalLink as IconComponent,
       href: 'https://algora.io/Anshgrover23',
       label: 'Algora Profile',
       color: 'hover:bg-purple-600',
     },
     {
-      icon: FileText,
+      icon: FileText as IconComponent,
       href: '/ansh-resume.pdf',
       label: 'Resume',
       color: 'hover:bg-green-700',
@@ -57,7 +63,7 @@ export const AnimatedSocialLinks = () => {
         <div className="bg-gray-900/80 backdrop-blur-md rounded-full px-6 py-3 border border-gray-700 relative">
           <div className="flex items-center gap-4 relative z-10">
             {links.map((link, index) => {
-              const Icon = link.icon as any;
+              const Icon = link.icon;
               return (
                 <Tooltip key={index}>
                   <TooltipTrigger asChild>
