@@ -10,7 +10,7 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://anshgrover.me'),
-  title: 'anshs-portfolio',
+  title: 'Ansh Grover',
   description: "Ansh Grover's personal portfolio website.",
   authors: [{ name: 'Ansh Grover', url: 'https://anshgrover.me/' }],
   icons: {
@@ -22,7 +22,7 @@ export const metadata: Metadata = {
   },
   manifest: '/site.webmanifest',
   openGraph: {
-    title: 'anshs-portfolio',
+    title: 'Ansh Grover',
     description: "Ansh Grover's personal portfolio website.",
     type: 'website',
     url: 'https://anshgrover.me/',

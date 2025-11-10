@@ -1,11 +1,13 @@
-"use client"
+'use client';
 import React from 'react';
 
 interface MarkdownRendererProps {
   content: string;
 }
 
-export const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({ content }) => {
+export const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({
+  content,
+}) => {
   const renderContent = () => {
     const lines = content.split('\n');
     const elements: React.ReactElement[] = [];
@@ -21,12 +23,17 @@ export const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({ content }) =
           codeBlockContent = [];
         } else {
           elements.push(
-            <div key={`code-${index}`} className="my-4 rounded-lg overflow-hidden">
+            <div
+              key={`code-${index}`}
+              className="my-4 rounded-lg overflow-hidden"
+            >
               <div className="bg-gray-800 px-4 py-2 text-xs text-gray-400 border-b border-gray-700">
                 {codeBlockLang || 'code'}
               </div>
               <pre className="bg-gray-900 p-4 overflow-x-auto">
-                <code className="text-sm text-gray-300">{codeBlockContent.join('\n')}</code>
+                <code className="text-sm text-gray-300">
+                  {codeBlockContent.join('\n')}
+                </code>
               </pre>
             </div>
           );
@@ -87,7 +94,9 @@ export const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({ content }) =
             {codeBlockLang || 'code'}
           </div>
           <pre className="bg-gray-900 p-4 overflow-x-auto">
-            <code className="text-sm text-gray-300">{codeBlockContent.join('\n')}</code>
+            <code className="text-sm text-gray-300">
+              {codeBlockContent.join('\n')}
+            </code>
           </pre>
         </div>
       );
@@ -99,17 +108,17 @@ export const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({ content }) =
   const formatInlineMarkdown = (text: string): React.ReactNode => {
     const parts: React.ReactNode[] = [];
     let lastIndex = 0;
-    
+
     const boldRegex = /\*\*(.*?)\*\*/g;
     const codeRegex = /`(.*?)`/g;
     const combinedRegex = /\*\*(.*?)\*\*|`(.*?)`/g;
-    
+
     let match;
     while ((match = combinedRegex.exec(text)) !== null) {
       if (match.index > lastIndex) {
         parts.push(text.substring(lastIndex, match.index));
       }
-      
+
       if (match[1] !== undefined) {
         parts.push(
           <strong key={match.index} className="font-bold text-white">
@@ -118,25 +127,24 @@ export const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({ content }) =
         );
       } else if (match[2] !== undefined) {
         parts.push(
-          <code key={match.index} className="bg-gray-800 text-blue-400 px-2 py-1 rounded text-sm">
+          <code
+            key={match.index}
+            className="bg-gray-800 text-blue-400 px-2 py-1 rounded text-sm"
+          >
             {match[2]}
           </code>
         );
       }
-      
+
       lastIndex = match.index + match[0].length;
     }
-    
+
     if (lastIndex < text.length) {
       parts.push(text.substring(lastIndex));
     }
-    
+
     return parts.length > 0 ? <>{parts}</> : text;
   };
 
-  return (
-    <div className="prose prose-invert max-w-none">
-      {renderContent()}
-    </div>
-  );
+  return <div className="prose prose-invert max-w-none">{renderContent()}</div>;
 };

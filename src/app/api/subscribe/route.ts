@@ -17,10 +17,7 @@ export async function POST(request: Request) {
     const { email } = body;
 
     if (!email || typeof email !== 'string') {
-      return NextResponse.json(
-        { error: 'Email is required' },
-        { status: 400 }
-      );
+      return NextResponse.json({ error: 'Email is required' }, { status: 400 });
     }
 
     if (!EMAIL_REGEX.test(email)) {
@@ -43,7 +40,7 @@ export async function POST(request: Request) {
       brevo.ContactsApiApiKeys.apiKey,
       process.env.BREVO_API_KEY || ''
     );
-    
+
     const createContact = new brevo.CreateContact();
     createContact.email = email;
     if (process.env.BREVO_LIST_ID) {
@@ -51,37 +48,40 @@ export async function POST(request: Request) {
       if (!isNaN(listId)) {
         createContact.listIds = [listId];
       } else {
-        console.warn('Invalid BREVO_LIST_ID format:', process.env.BREVO_LIST_ID);
+        console.warn(
+          'Invalid BREVO_LIST_ID format:',
+          process.env.BREVO_LIST_ID
+        );
         createContact.listIds = undefined;
       }
     } else {
       createContact.listIds = undefined;
     }
-    createContact.updateEnabled = true; 
-    
+    createContact.updateEnabled = true;
+
     try {
       await apiInstance.createContact(createContact);
-      
+
       return NextResponse.json(
-        { 
-          success: true, 
-          message: 'Successfully subscribed to the newsletter!' 
+        {
+          success: true,
+          message: 'Successfully subscribed to the newsletter!',
         },
         { status: 200 }
       );
     } catch (brevoError: unknown) {
       const error = brevoError as BrevoApiError;
-      
+
       if (error?.response?.body?.code === 'duplicate_parameter') {
         return NextResponse.json(
-          { 
-            success: true, 
-            message: 'You are already subscribed to the newsletter!' 
+          {
+            success: true,
+            message: 'You are already subscribed to the newsletter!',
           },
           { status: 200 }
         );
       }
-      
+
       console.error('Brevo API error:', error?.response?.body || error);
       return NextResponse.json(
         { error: 'Failed to subscribe. Please try again later.' },
@@ -98,8 +98,5 @@ export async function POST(request: Request) {
 }
 
 export async function GET() {
-  return NextResponse.json(
-    { error: 'Method not allowed' },
-    { status: 405 }
-  );
+  return NextResponse.json({ error: 'Method not allowed' }, { status: 405 });
 }

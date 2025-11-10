@@ -1,4 +1,4 @@
-"use client"
+'use client';
 
 import { Badge } from '@/components/ui/badge';
 import Image from 'next/image';
@@ -58,7 +58,13 @@ export const Skills = () => {
                 >
                   {/* conditionally showing icon and emoji */}
                   {skill.icon.endsWith('.svg') ? (
-                    <Image src={skill.icon} alt={`${skill.name}-svg`} width={20} height={20} className={`${skill.name === 'Next.js' && 'invert'} ${skill.name === 'Rust' && 'w-4'}`}/>
+                    <Image
+                      src={skill.icon}
+                      alt={`${skill.name}-svg`}
+                      width={20}
+                      height={20}
+                      className={`${skill.name === 'Next.js' && 'invert'} ${skill.name === 'Rust' && 'w-4'}`}
+                    />
                   ) : (
                     <span>{skill.icon}</span>
                   )}

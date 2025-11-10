@@ -1,4 +1,4 @@
-"use client"
+'use client';
 import { useState } from 'react';
 import { CompanyModal } from './CompanyModal';
 import Image from 'next/image';
@@ -286,7 +286,12 @@ export const Experience = () => {
                     Next.js
                   </span>
                   <span className="flex items-center gap-1 px-3 py-1 rounded-full backdrop-blur-md bg-white/10 border border-rose-400/30 shadow-lg text-rose-200 text-xs font-semibold transition-transform transform hover:scale-105 hover:bg-rose-700/30">
-                    <Image src="/svg-icons/ruby.svg" alt="ruby-svg" width={15} height={15}/>
+                    <Image
+                      src="/svg-icons/ruby.svg"
+                      alt="ruby-svg"
+                      width={15}
+                      height={15}
+                    />
                     Ruby
                   </span>
                 </div>

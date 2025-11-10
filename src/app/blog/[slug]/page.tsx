@@ -7,7 +7,11 @@ import { AnimatedSocialLinks } from '@/components/AnimatedSocialLinks';
 import { MarkdownRenderer } from '@/components/MarkdownRenderer';
 import { Newsletter } from '@/components/Newsletter';
 
-export default async function BlogPostPage({ params }: { params: Promise<{ slug: string }> }) {
+export default async function BlogPostPage({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}) {
   const { slug } = await params;
   const post = getBlogPost(slug);
 
@@ -55,7 +59,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
             </div>
 
             <div className="flex flex-wrap gap-2">
-              {post.tags.map((tag) => (
+              {post.tags.map(tag => (
                 <span
                   key={tag}
                   className="px-3 py-1 text-sm rounded-full bg-blue-500/10 text-blue-400 border border-blue-500/20"

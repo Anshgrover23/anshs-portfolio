@@ -1,4 +1,4 @@
-"use client"
+'use client';
 export const About = () => {
   return (
     <section id="about" className="mb-16">

@@ -5,10 +5,10 @@ import { Navigation } from '@/components/Navigation';
 import { AnimatedSocialLinks } from '@/components/AnimatedSocialLinks';
 
 const formatDate = (dateString: string) => {
-  return new Date(dateString).toLocaleDateString('en-US', { 
-    year: 'numeric', 
-    month: 'short', 
-    day: 'numeric' 
+  return new Date(dateString).toLocaleDateString('en-US', {
+    year: 'numeric',
+    month: 'short',
+    day: 'numeric',
   });
 };
 
@@ -29,7 +29,7 @@ export default function BlogPage() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {posts.map((post) => (
+          {posts.map(post => (
             <Link
               key={post.slug}
               href={`/blog/${post.slug}`}
@@ -56,7 +56,7 @@ export default function BlogPage() {
                 </p>
 
                 <div className="flex flex-wrap gap-2 mb-4">
-                  {post.tags.map((tag) => (
+                  {post.tags.map(tag => (
                     <span
                       key={tag}
                       className="px-3 py-1 text-xs rounded-full bg-blue-500/10 text-blue-400 border border-blue-500/20"
@@ -77,7 +77,9 @@ export default function BlogPage() {
 
         {posts.length === 0 && (
           <div className="text-center py-20">
-            <p className="text-gray-500 text-lg">No blog posts yet. Check back soon!</p>
+            <p className="text-gray-500 text-lg">
+              No blog posts yet. Check back soon!
+            </p>
           </div>
         )}
       </div>
