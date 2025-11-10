@@ -1,8 +1,14 @@
 'use client';
+
+import { Trophy, UserRoundSearch } from 'lucide-react';
+
 export const About = () => {
   return (
     <section id="about" className="mb-16">
-      <h2 className="text-3xl font-bold mb-8 text-white">🧐 About Me</h2>
+      <h2 className="text-3xl font-bold mb-8 text-white flex items-center gap-3">
+        <UserRoundSearch className="h-8 w-8 text-accent" />
+        About Me
+      </h2>
       <div className="space-y-6">
         <div className="text-gray-300 leading-relaxed">
           <p>
@@ -16,8 +22,9 @@ export const About = () => {
         </div>
 
         <div className="bg-gray-900/50 p-6 rounded-lg">
-          <h4 className="text-lg font-semibold text-white mb-3">
-            🏆 Key Achievements
+          <h4 className="text-lg font-semibold text-white mb-3 flex items-center gap-2">
+            <Trophy className="h-6 w-6 text-accent" />
+            Key Achievements
           </h4>
           <ul className="text-gray-300 space-y-2">
             <li>

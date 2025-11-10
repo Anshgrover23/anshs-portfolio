@@ -61,3 +61,15 @@ BREVO_API_KEY=your_brevo_api_key
 Note:
 
 - `BREVO_API_KEY` is required for the `/api/subscribe` endpoint to work.
+
+## GitHub Activity Setup
+
+To display the GitHub contribution graph you need to provide the following environment variables:
+
+```env
+GRAPHQL_TOKEN=your_personal_access_token
+NEXT_PUBLIC_GITHUB_USERNAME=your_github_username # optional, defaults to Anshgrover23
+```
+
+- `GRAPHQL_TOKEN` must be a GitHub personal access token with the `read:user` scope (classic tokens work as well). It is used on the server to query the GraphQL API.
+- `NEXT_PUBLIC_GITHUB_USERNAME` lets you override the username shown in the activity header while keeping the token private.

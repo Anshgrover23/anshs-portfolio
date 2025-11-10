@@ -1,4 +1,3 @@
-'use client';
 import { Hero } from '@/components/Hero';
 import { About } from '@/components/About';
 import { Experience } from '@/components/Experience';
@@ -7,6 +6,7 @@ import { Skills } from '@/components/Skills';
 import { Newsletter } from '@/components/Newsletter';
 import { Navigation } from '@/components/Navigation';
 import { AnimatedSocialLinks } from '@/components/AnimatedSocialLinks';
+import { GitHubActivity } from '@/components/GitHubActivity';
 
 function Index() {
   return (
@@ -22,6 +22,7 @@ function Index() {
         <div id="experience" className="scroll-mt-24">
           <Experience />
         </div>
+        <GitHubActivity />
         <div id="education" className="scroll-mt-24">
           <Education />
         </div>
