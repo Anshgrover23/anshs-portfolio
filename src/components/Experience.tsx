@@ -76,6 +76,50 @@ export const Experience = () => {
           ],
         },
         {
+          title: 'Enabled automated CI and hardened end-to-end test coverage',
+          description:
+            'Enabled automated CI runs for contributor pull requests and expanded Playwright coverage across Helper, eliminating fragile page objects and strengthening accessibility selectors for more reliable contributions.',
+          badge: '7.5k$ total bounties earned',
+          pullRequests: [
+            {
+              title:
+                '#1019 · Enable CI to run automatically on contributor pull requests',
+              link: 'https://github.com/antiwork/helper/pull/1019',
+            },
+            {
+              title:
+                '#902 · fix(e2e): mock FIRECRAWL_API_KEY in CI & improve accessibility selectors',
+              link: 'https://github.com/antiwork/helper/pull/902',
+            },
+            {
+              title:
+                '#900 · fix: E2E tests and remove page object from newMessageWithsavedRepliesPage',
+              link: 'https://github.com/antiwork/helper/pull/900',
+            },
+            {
+              title: '#895 · Remove widget page object usage',
+              link: 'https://github.com/antiwork/helper/pull/895',
+            },
+            {
+              title: '#873 · remove base page object usage',
+              link: 'https://github.com/antiwork/helper/pull/873',
+            },
+            {
+              title: '#872 · remove login page object usage',
+              link: 'https://github.com/antiwork/helper/pull/872',
+            },
+            {
+              title: '#854 · tests: add E2E tests for customer settings page',
+              link: 'https://github.com/antiwork/helper/pull/854',
+            },
+            {
+              title:
+                '#851 · Refactor Conversations E2E Tests: Inline Locators and Remove Page Object',
+              link: 'https://github.com/antiwork/helper/pull/851',
+            },
+          ],
+        },
+        {
           title:
             'Removed legacy encrypted-field logic by migrating to plaintext storage',
           description:
@@ -133,6 +177,18 @@ export const Experience = () => {
               title:
                 '#721 · Remove mailboxSlug from all frontend routes, components, and widget code for single-tenant migration',
               link: 'https://github.com/antiwork/helper/pull/721',
+            },
+          ],
+        },
+        {
+          title: 'Added GitHub authentication to Gumboard',
+          description:
+            'Implemented OAuth-based GitHub authentication in Gumboard with end-to-end tests and documentation updates, showcasing ability to ship secure, scalable login flows.',
+          badge: '1k$ total bounty',
+          pullRequests: [
+            {
+              title: '#125 · Add GitHub auth',
+              link: 'https://github.com/antiwork/gumboard/pull/125',
             },
           ],
         },
