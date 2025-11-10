@@ -93,6 +93,16 @@
 }
 
 @layer base {
+  html {
+    font-size: 100%;
+  }
+
+  @media (min-width: 1024px) {
+    html {
+      font-size: 90%;
+    }
+  }
+
   * {
     @apply border-border;
   }
