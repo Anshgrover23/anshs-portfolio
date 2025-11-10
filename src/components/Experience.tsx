@@ -11,76 +11,150 @@ export const Experience = () => {
       company: 'antiwork',
       role: 'Open Source Contributor',
       period: '2025 - Present',
-      description:
-        'Refactored mailbox logic, improved UI/UX, added equity management.',
+      headline: 'Build multiple major features and shipped them perfectly.',
       logo: 'antiwork.svg',
       link: 'https://github.com/antiwork/helper',
-      totalPRs: '9+',
+      totalPRs: '55+',
       totalBounties: '$40,000 (Flexile)',
       contributions: [
         {
-          title: 'refactor: rename mailboxId to unused_mailboxId',
+          title:
+            'Designed and shipped Flexile equity management experiences end-to-end',
           description:
-            'Renamed mailboxId to unused_mailboxId for clarity and future-proofing.',
-          link: 'https://github.com/antiwork/helper/pull/706',
-          bounty:
-            '$40,000 bounty via Flexile(their own contractor payment platform)',
+            'Designed and shipped Equity Management features in Flexile — including Cap Tables, Option Pools, and Lawyer Management UI — while migrating company updates and related modules from tRPC to a Rails API for improved consistency and backend performance.',
+          badge: '$15k total bounties earned',
+          pullRequests: [
+            {
+              title: '#691 · feat: Manage lawyers via UI',
+              link: 'https://github.com/antiwork/flexile/pull/691',
+            },
+            {
+              title: '#1031 · feat: cap table UI',
+              link: 'https://github.com/antiwork/flexile/pull/1031',
+            },
+            {
+              title: '#1128 · feat: create option pools via UI',
+              link: 'https://github.com/antiwork/flexile/pull/1128',
+            },
+            {
+              title:
+                '#1210 · refactor(cap_table): make cap_table a singular resource',
+              link: 'https://github.com/antiwork/flexile/pull/1210',
+            },
+            {
+              title:
+                '#1093 · feat(equity-settings): require company name before enabling equity',
+              link: 'https://github.com/antiwork/flexile/pull/1093',
+            },
+            {
+              title:
+                '#1030 · Refactor InviteLawyer service to improve user invitation logic',
+              link: 'https://github.com/antiwork/flexile/pull/1030',
+            },
+            {
+              title: '#913 · Remove expenses feature flag and related check',
+              link: 'https://github.com/antiwork/flexile/pull/913',
+            },
+            {
+              title:
+                '#907 · Remove QuickBooks feature flag checks from backend and frontend',
+              link: 'https://github.com/antiwork/flexile/pull/907',
+            },
+            {
+              title: '#673 · feat: add equity management feature in settings',
+              link: 'https://github.com/antiwork/flexile/pull/673',
+            },
+            {
+              title:
+                '#660 · refactor: consolidate equity flags into equity_enabled',
+              link: 'https://github.com/antiwork/flexile/pull/660',
+            },
+            {
+              title: '#641 · remove use of companyUpdatesEnabled flag',
+              link: 'https://github.com/antiwork/flexile/pull/641',
+            },
+          ],
         },
         {
           title:
-            'refactor: replace getMailboxById/getMailboxBySlug with getMailbox',
+            'Removed legacy encrypted-field logic by migrating to plaintext storage',
           description:
-            'Simplified mailbox retrieval logic by consolidating functions.',
-          link: 'https://github.com/antiwork/helper/pull/704',
+            'Simplified Helper setup and data handling by replacing encrypted-field workflow with plaintext columns, a safe conversion job, and follow-up cleanup across schema and app logic.',
+          badge: '5k$ bountied issue',
+          pullRequests: [
+            {
+              title:
+                '#865 · Refactor: replace encrypted fields with plaintext columns in database schema',
+              link: 'https://github.com/antiwork/helper/pull/865',
+            },
+            {
+              title:
+                '#912 · Remove encrypted fields from database schema and related logic',
+              link: 'https://github.com/antiwork/helper/pull/912',
+            },
+            {
+              title:
+                '#839 · refactor: add plaintext columns for encrypted fields in database schema',
+              link: 'https://github.com/antiwork/helper/pull/839',
+            },
+            {
+              title:
+                '#858 · feat: add migration job for encrypted to plaintext data conversion',
+              link: 'https://github.com/antiwork/helper/pull/858',
+            },
+          ],
+        },
+        {
+          title: 'Refactored Helper into a single-tenant mailbox platform',
+          description:
+            'Refactored Helper from a multi-tenant to single-tenant architecture and simplified mailbox logic to improve maintainability and deployment simplicity.',
+          badge: '2.5k$ bountied issue',
+          pullRequests: [
+            {
+              title:
+                '#703 · Remove mailbox switcher dropdown and mailboxes.list procedure',
+              link: 'https://github.com/antiwork/helper/pull/703',
+            },
+            {
+              title:
+                '#704 · refactor: replace getMailboxById/getMailboxBySlug with getMailbox',
+              link: 'https://github.com/antiwork/helper/pull/704',
+            },
+            {
+              title: '#706 · refactor: rename mailboxId to unused_mailboxId',
+              link: 'https://github.com/antiwork/helper/pull/706',
+            },
+            {
+              title:
+                '#733 · fix: remove flexile and helper fixtures & fix nesting structure',
+              link: 'https://github.com/antiwork/helper/pull/733',
+            },
+            {
+              title:
+                '#721 · Remove mailboxSlug from all frontend routes, components, and widget code for single-tenant migration',
+              link: 'https://github.com/antiwork/helper/pull/721',
+            },
+          ],
         },
         {
           title:
-            'Remove mailbox switcher dropdown and mailboxes.list procedure',
+            'Moved company update workflows from tRPC to the Rails API surface',
           description:
-            'Streamlined the UI by removing unnecessary mailbox switcher and related backend procedure.',
-          link: 'https://github.com/antiwork/helper/pull/703',
-        },
-        {
-          title:
-            'Fix: status dot colors for open (green), closed (gray), and spam (red) in conversation filter dropdown',
-          description:
-            'Improved status dot color coding for better visual clarity in the conversation filter dropdown.',
-          link: 'https://github.com/antiwork/helper/pull/683',
-        },
-        {
-          title: 'fix: modal overlay lighter for better UI/UX',
-          description:
-            'Enhanced modal overlay for a lighter, more user-friendly appearance.',
-          link: 'https://github.com/antiwork/helper/pull/684',
-        },
-        {
-          title: 'feat: add equity management feature in settings',
-          description:
-            'Implemented comprehensive equity management functionality in the settings panel.',
-          link: 'https://github.com/antiwork/flexile/pull/673',
-        },
-        {
-          title: 'refactor: consolidate equity flags into equity_enabled',
-          description:
-            'Streamlined equity-related configuration by consolidating multiple flags into a single equity_enabled flag.',
-          link: 'https://github.com/antiwork/flexile/pull/660',
-        },
-        {
-          title: 'fix: build failing on frontend',
-          description: 'Resolved frontend build issues(minor PR)',
-          link: 'https://github.com/antiwork/flexile/pull/651',
-        },
-        {
-          title: 'remove use of companyUpdatesEnabled flag',
-          description:
-            'Removed companyUpdatesEnabled flag to become companyUpdates always true.',
-          link: 'https://github.com/antiwork/flexile/pull/641',
+            'Migrated frontend company updates database calls onto the Rails API to standardize data access patterns and unlock backend performance improvements.',
+          badge: '$500 total bounty',
+          pullRequests: [
+            {
+              title:
+                '#1207 · feat(company_updates): migrate frontend db calls to Rails API',
+              link: 'https://github.com/antiwork/flexile/pull/1207',
+            },
+          ],
         },
       ],
     },
     {
       company: 'TSCircuit',
-      role: 'Open Source Contributor',
+      role: 'Open Source Contributor/Maintainer',
       period: '2024 - Present',
       description:
         'Contributing to circuit design tools and testing infrastructure',
@@ -242,6 +316,11 @@ export const Experience = () => {
               </div>
               <p className="text-purple-400 mb-2">{exp.role}</p>
               <p className="text-gray-300 text-sm mb-3">{exp.description}</p>
+              {exp.headline && (
+                <p className="text-white text-sm font-semibold mb-4">
+                  {exp.headline}
+                </p>
+              )}
               <div className="flex flex-col items-start gap-4 mb-2">
                 <div className="flex items-center gap-2">
                   <span className="text-green-400 font-semibold text-sm sm:text-sm">
